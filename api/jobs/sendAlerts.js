@@ -1,19 +1,19 @@
-const asyncForEach = require("../utils/asyncForEach");
-const Alert = require("../models/Alert");
-const User = require("../models/User");
-const os = require("os");
-const sendEmail = require("../utils/sendEmail");
+const asyncForEach = require('../utils/asyncForEach');
+const Alert = require('../models/Alert');
+const User = require('../models/User');
+const os = require('os');
+const sendEmail = require('../utils/sendEmail');
 
 const sendAlerts = (host, port) => async () => {
   console.log(`[cron:sendAlerts] Server running a scheduled job`.magenta);
-  const alerts = await Alert.find({}).select("+user");
+  const alerts = await Alert.find({}).select('+user');
   asyncForEach(alerts, async (alert) => {
     if (!shouldAlert(alert)) return;
     const user = await User.findById(alert.user);
     try {
       await sendEmail({
         email: user.email,
-        subject: "Search Alerts",
+        subject: 'Search Alerts',
         message: getAlertEmailMessage(alert.query, host, port),
       });
     } catch (error) {
@@ -28,13 +28,13 @@ const sendAlerts = (host, port) => async () => {
 const shouldAlert = async (alert) => {
   var date = new Date();
   switch (alert.frequency) {
-    case "daily":
+    case 'daily':
       return true;
     // on sunday of each week
-    case "weekly":
+    case 'weekly':
       return date.getDay() === 0;
     // on 28th of each month
-    case "monthly":
+    case 'monthly':
       return date.getDate() === 28;
     default:
       return false;

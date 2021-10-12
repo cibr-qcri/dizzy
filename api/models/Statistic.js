@@ -2,14 +2,14 @@ const mongoose = require('mongoose');
 
 const StatisticSchema = new mongoose.Schema(
   {
-    data: {
+    computed: {
       type: Object,
       required: true,
     },
     type: {
       type: String,
       required: true,
-      enum: ['batched', 'realtime'],
+      enum: ['batch', 'realtime'],
     },
   },
   {

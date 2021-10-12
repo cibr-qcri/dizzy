@@ -21,7 +21,12 @@ import Main from '../Main';
 import AuthRedirect from '../AuthRedirect';
 
 // Store
-import { getThemeMode, getToken, setThemeMode } from '../../store/actions';
+import {
+  getStats,
+  getThemeMode,
+  getToken,
+  setThemeMode,
+} from '../../store/actions';
 
 // Styles
 import { LazyProgress } from './App-styles';
@@ -64,6 +69,7 @@ const App = () => {
 
   // Hooks
   useEffect(() => {
+    dispatch(getStats());
     dispatch(getToken());
     dispatch(getThemeMode());
     window

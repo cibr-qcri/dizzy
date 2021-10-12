@@ -15,7 +15,7 @@ const webResults = asyncHandler(async (request, response, next) => {
   const endIndex = page * limit;
 
   const results = await es.search({
-    index: process.env.ES_INDEX,
+    index: process.env.ES_CRAWL_INDEX,
     from: startIndex,
     size: limit,
     body: {

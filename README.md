@@ -2,6 +2,12 @@
 
 Dizzy: A search engine for the visible Dark Web.
 
+## Setup
+
+```zsh
+sudo echo '10.4.8.146 es.toshi.qcri.org' >> /etc/hosts
+```
+
 ## Starting
 
 ```zsh

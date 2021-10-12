@@ -1,8 +1,14 @@
 // React
-import React from 'react';
+import React, { useEffect } from 'react';
+
+// Redux
+import { useDispatch, useSelector } from 'react-redux';
 
 // Material
 import { Typography } from '@material-ui/core';
+
+// Store
+import { getStats } from '../../../store/actions';
 
 // Styles
 import { useStyles, Stat } from './Stats-styles';
@@ -10,6 +16,16 @@ import { useStyles, Stat } from './Stats-styles';
 const MainStats = () => {
   // Variables
   const classes = useStyles();
+  const dispatch = useDispatch();
+  const stats = useSelector((state) => state.stats.data.computed);
+  const cryptosCount = Object.values(stats.count.crypto).reduce(
+    (a, b) => a + b
+  );
+
+  // Hooks
+  useEffect(() => {
+    dispatch(getStats());
+  }, [dispatch]);
 
   // JSX
   const view = (
@@ -21,9 +37,9 @@ const MainStats = () => {
         Find what you're looking for in the darkweb
       </Typography>
       <div className={classes.stats}>
-        <Stat value={50300000} text="Pages" />
-        <Stat value={38111} text="Domains" />
-        <Stat value={50234} text="Cryptos" />
+        <Stat value={stats.count.page} text="Pages" />
+        <Stat value={stats.count.domain} text="Domains" />
+        <Stat value={cryptosCount} text="Cryptos" />
       </div>
     </div>
   );

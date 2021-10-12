@@ -19,6 +19,7 @@ import thunk from 'redux-thunk';
 import authReducer from './store/reducers/auth';
 import dialogReducer from './store/reducers/dialog';
 import searchReducer from './store/reducers/search';
+import statsReducer from './store/reducers/stats';
 import themeReducer from './store/reducers/theme';
 import toastReducer from './store/reducers/toast';
 import userReducer from './store/reducers/user';
@@ -40,6 +41,7 @@ const rootReducer = combineReducers({
   auth: authReducer,
   dialog: dialogReducer,
   search: searchReducer,
+  stats: statsReducer,
   theme: themeReducer,
   toast: toastReducer,
   user: userReducer,

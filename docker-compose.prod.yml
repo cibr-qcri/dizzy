@@ -30,9 +30,10 @@ services:
       RATE_LIMIT_WINDOW_MS: 60000
       RATE_LIMIT_MAX: 100
       MONGO_URI: 'mongodb://mongo:27017/dizzy'
-      ES_URI: 'http://10.4.8.146:9200'
+      ES_URI: 'http://es.toshi.qcri.org'
       ES_PING_TIMEOUT_MS: 20000
-      ES_INDEX: 'crawlers_v4'
+      ES_CRAWLER_INDEX: 'darkweb-tor-index'
+      ES_RECRAWLER_INDEX: 'darkweb-tor-recrawler-index'
       JWT_SECRET: 'UJl5Y8nK7b7TNjz8'
       JWT_EXPIRE_DAYS: '30d'
       JWT_COOKIE_EXPIRE_MS: 2592000000

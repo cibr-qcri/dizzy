@@ -26,6 +26,9 @@ export {
 export { reset as resetSearch } from './search/creators';
 export { getWebResults } from './search/thunks';
 
+// Stats
+export { getStats } from './stats/thunks';
+
 // Theme
 export { getThemeMode, setThemeMode } from './theme/thunks';
 

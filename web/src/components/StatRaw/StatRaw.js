@@ -12,7 +12,7 @@ import { Typography } from '@material-ui/core';
 
 const StatRaw = (props) => {
   // Variables
-  const { classes, value, text } = props;
+  const { classes, value = 0, text } = props;
 
   // JSX
   const view = (
@@ -32,7 +32,7 @@ StatRaw.propTypes = {
   classes: PropTypes.shape({
     root: PropTypes.string.isRequired,
   }),
-  value: PropTypes.number.isRequired,
+  value: PropTypes.number,
   text: PropTypes.string.isRequired,
 };
 
