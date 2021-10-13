@@ -30,8 +30,7 @@ const reducer = (state = initialState, action) => {
       });
     case types.GET_STATS_SUCCESS:
       return updateObject(state, {
-        // if no stats were computed use initial state
-        data: action.payload || initialState.data,
+        data: action.payload,
         isBusy: false,
       });
     case types.GET_STATS_FAILURE:

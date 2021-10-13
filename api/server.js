@@ -78,7 +78,7 @@ const sendAlerts = require('./jobs/sendAlerts');
 const computeStats = require('./jobs/computeStats');
 
 cron.schedule('0 0 * * *', sendAlerts(host, port)); // Every day at midnight
-cron.schedule('0 * * * *', computeStats); // Every hour
+cron.schedule('0 0 * * *', computeStats);
 
 // Unhandled errors
 process.on('unhandledRejection', (error, promise) => {
