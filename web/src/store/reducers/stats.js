@@ -10,7 +10,7 @@ const initialState = {
     computed: {
       count: {
         page: 0,
-        domains: 0,
+        domain: 0,
         crypto: {
           btc: 0,
         },
@@ -30,7 +30,8 @@ const reducer = (state = initialState, action) => {
       });
     case types.GET_STATS_SUCCESS:
       return updateObject(state, {
-        data: action.payload,
+        // if no stats were computed use initial state
+        data: action.payload || initialState.data,
         isBusy: false,
       });
     case types.GET_STATS_FAILURE:

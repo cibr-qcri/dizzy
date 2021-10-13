@@ -1,11 +1,11 @@
 // Axios
-import axios from "axios";
+import axios from 'axios';
 
 // Redux
-import { batch } from "react-redux";
+import { batch } from 'react-redux';
 
 // Creators
-import * as creators from "./creators";
+import * as creators from './creators';
 import {
   createTokenSuccess,
   createTokenFailure,
@@ -16,14 +16,14 @@ import {
   resetAuth,
   resetSearch,
   showAlert,
-} from "../";
+} from '../';
 
 // Create
 export const createAccount = (data) => {
   return (dispatch) => {
     dispatch(creators.createAccountStart());
     axios
-      .post("/auth/signup", data)
+      .post('/auth/signup', data)
       .then((_response) => {
         dispatch(creators.createAccountSuccess());
       })
@@ -40,11 +40,11 @@ export const createAlert = (data) => {
   return (dispatch) => {
     dispatch(creators.createAlertStart());
     axios
-      .post("/me/alerts", data)
+      .post('/me/alerts', data)
       .then((_response) => {
         batch(() => {
           dispatch(creators.createAlertSuccess());
-          dispatch(showAlert("Alert set. Thank you!", "success"));
+          dispatch(showAlert('Alert set. Thank you!', 'success'));
           dispatch(getUserAlerts());
         });
       })
@@ -61,11 +61,11 @@ export const createFeedback = (data) => {
   return (dispatch) => {
     dispatch(creators.createFeedbackStart());
     axios
-      .post("/me/feedbacks", data)
+      .post('/me/feedbacks', data)
       .then((_response) => {
         batch(() => {
           dispatch(creators.createFeedbackSuccess());
-          dispatch(showAlert("Feedback sent. Thank you!", "success"));
+          dispatch(showAlert('Feedback sent. Thank you!', 'success'));
         });
       })
       .catch((error) => {
@@ -81,11 +81,11 @@ export const createTag = (data) => {
   return (dispatch) => {
     dispatch(creators.createTagStart());
     axios
-      .post("/me/tags", data)
+      .post('/me/tags', data)
       .then((_response) => {
         batch(() => {
           dispatch(creators.createTagSuccess());
-          dispatch(showAlert("Tag sent. Thank you!", "success"));
+          dispatch(showAlert('Tag sent. Thank you!', 'success'));
         });
       })
       .catch((error) => {
@@ -102,7 +102,7 @@ export const getAccount = () => {
   return (dispatch) => {
     dispatch(creators.getAccountStart());
     axios
-      .get("/me")
+      .get('/me')
       .then((response) => {
         dispatch(creators.getAccountSuccess(response.data.data));
       })
@@ -119,7 +119,7 @@ export const getAccountOnAuth = (authToken, storedToken = true) => {
   return (dispatch) => {
     dispatch(creators.getAccountStart());
     axios
-      .get("/me")
+      .get('/me')
       .then((response) => {
         batch(() => {
           dispatch(creators.getAccountSuccess(response.data.data));
@@ -148,7 +148,7 @@ export const getAlerts = () => {
   return (dispatch) => {
     dispatch(creators.getAlertsStart());
     axios
-      .get("/me/alerts")
+      .get('/me/alerts')
       .then((response) => {
         dispatch(creators.getAlertsSuccess(response.data.data));
       })
@@ -166,11 +166,11 @@ export const updateAccount = (data) => {
   return (dispatch) => {
     dispatch(creators.updateAccountStart());
     axios
-      .put("/me", data)
+      .put('/me', data)
       .then((response) => {
         batch(() => {
           dispatch(creators.updateAccountSuccess(response.data.data));
-          dispatch(showAlert("Account updated. Thank you!", "success"));
+          dispatch(showAlert('Account updated. Thank you!', 'success'));
         });
       })
       .catch((error) => {
@@ -187,10 +187,11 @@ export const deleteAccount = () => {
   return (dispatch) => {
     dispatch(creators.deleteAccountStart());
     axios
-      .delete("/me")
+      .delete('/me')
       .then((_response) => {
         batch(() => {
           dispatch(creators.deleteAccountSuccess());
+          dispatch(showAlert('Account deleted. Come again!', 'success'));
           dispatch(deleteToken());
           dispatch(resetAuth());
           dispatch(resetSearch());
@@ -209,7 +210,7 @@ export const deleteAlert = (id) => {
   return (dispatch) => {
     dispatch(creators.deleteAlertStart());
     axios
-      .delete("/me/alerts/" + id)
+      .delete('/me/alerts/' + id)
       .then((_response) => {
         batch(() => {
           dispatch(creators.deleteAlertSuccess());
