@@ -11,6 +11,7 @@ import { useLocation } from 'react-router-dom';
 import qs from 'qs';
 
 // Components
+import Filter from './Filter';
 import WebResults from './Web/Results/WebResults';
 import MoreResults from './MoreResults';
 import NoResults from './NoResults';
@@ -82,6 +83,7 @@ export const Search = () => {
   const view = (
     <div className={classes.root}>
       <SearchBox />
+      <Filter />
       {isBusy && !pagination.next ? <LazyProgress /> : content}
     </div>
   );

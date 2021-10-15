@@ -11,7 +11,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 // Material
-import SearchIcon from '@material-ui/icons/Search';
+import {
+  FilterList as FilterListIcon,
+  Search as SearchIcon,
+} from '@material-ui/icons';
 import { Divider, IconButton, InputBase, Paper } from '@material-ui/core';
 
 // Store
@@ -69,6 +72,9 @@ const SearchBoxRaw = (props) => {
           placeholder={placeholder}
           onChange={queryChangeHandler}
         />
+        <IconButton>
+          <FilterListIcon />
+        </IconButton>
         <Divider className={classes.divider} orientation="vertical" />
         <IconButton color="primary" type="submit" aria-label="search">
           <SearchIcon />
