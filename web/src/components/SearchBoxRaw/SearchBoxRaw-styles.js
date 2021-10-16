@@ -8,16 +8,16 @@ export const stylesCreator = (theme) => ({
     },
     paper: {
       display: 'flex',
+      padding: theme.spacing(0.5),
     },
     input: {
       flex: 1,
-      paddingLeft: theme.spacing(1.5),
-      marginRight: theme.spacing(1.5),
+      paddingLeft: theme.spacing(0.5),
+      paddingRight: theme.spacing(0.5),
     },
     divider: {
       height: 40,
-      marginTop: theme.spacing(0.5),
-      marginBottom: theme.spacing(0.5),
+      margin: theme.spacing(0.5),
     },
   },
 });

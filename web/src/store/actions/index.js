@@ -23,7 +23,11 @@ export {
 } from './dialog/creators';
 
 // Search
-export { reset as resetSearch } from './search/creators';
+export {
+  reset as resetSearch,
+  resetFilter,
+  setFilter as setSearchFilter,
+} from './search/creators';
 export { getWebResults } from './search/thunks';
 
 // Stats

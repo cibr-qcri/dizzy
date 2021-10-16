@@ -29,7 +29,7 @@ export const Main = () => {
   const view = (
     <div className={classes.root}>
       <Logo />
-      <SearchBox />
+      <SearchBox enableFilter={false} />
       <div className={classes.features}>
         <Analytics />
         <div className={classes.otherFeatures}>

@@ -5,9 +5,9 @@ import React from 'react';
 import FilterForm from './Form/FilterForm';
 
 // Styles
-import { useStyles } from './Filter-styles';
+import { useStyles } from './FilterScrollList-styles';
 
-const SearchFilter = (props) => {
+const SearchFilterScrollList = () => {
   // Variables
   const classes = useStyles();
 
@@ -21,4 +21,4 @@ const SearchFilter = (props) => {
   return view;
 };
 
-export default SearchFilter;
+export default SearchFilterScrollList;

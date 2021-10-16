@@ -18,6 +18,9 @@ export const stylesCreator = (theme) => ({
       minWidth: 120,
       marginBottom: theme.spacing(1),
       marginRight: theme.spacing(2),
+      '&:last-child': {
+        marginRight: 0,
+      },
     },
   },
 });

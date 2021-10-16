@@ -1,6 +1,9 @@
 // React
 import React from 'react';
 
+// Lodash
+import _ from 'lodash';
+
 // Hook Form
 import { useForm, Controller } from 'react-hook-form';
 
@@ -14,23 +17,26 @@ import {
   InputLabel,
   MenuItem,
   Select,
-  TextField,
 } from '@material-ui/core';
 
 // Redux
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+
+// Store
+import { setSearchFilter } from '../../../../store/actions';
 
 // Styles
 import { useStyles } from './FilterForm-styles';
 
-const FilterForm = (props) => {
+const FilterForm = () => {
   // Variables
   const classes = useStyles();
   const dispatch = useDispatch();
-  const { formRef } = props;
-  const { register, handleSubmit, errors, control } = useForm({
+  const filter = useSelector((state) => state.search.data.filter);
+  const { control, errors, watch } = useForm({
     validationSchema: filterFormSchema,
   });
+  const watchAllFields = watch();
 
   const mirroring = [
     { type: 'any', label: 'Any' },
@@ -83,14 +89,21 @@ const FilterForm = (props) => {
   ];
 
   // Handlers
-  const filterHandler = () => {
-    console.log('filterHandler');
-  };
+
+  // Hooks
+  React.useEffect(() => {
+    if (!_.isEmpty(watchAllFields) && !_.isEqual(watchAllFields, filter)) {
+      dispatch(setSearchFilter(watchAllFields));
+    }
+  }, [dispatch, filter, watchAllFields]);
 
   //JSX
-  const getSelection = (data) => {
+  const getSelection = (props, data) => {
     return (
-      <Select>
+      <Select
+        value={props.value || ''}
+        onChange={(event) => props.onChange(event.target.value)}
+      >
         {data.map((item, index) => {
           return (
             <MenuItem key={index} value={item.type}>
@@ -103,18 +116,14 @@ const FilterForm = (props) => {
   };
 
   const view = (
-    <form
-      className={classes.root}
-      ref={formRef}
-      onSubmit={handleSubmit(filterHandler)}
-    >
+    <form className={classes.root}>
       <FormControl className={classes.select} error={!!errors.language}>
         <InputLabel>Language</InputLabel>
         <Controller
-          as={getSelection(languages)}
+          as={(props) => getSelection(props, languages)}
           name="language"
           control={control}
-          defaultValue=""
+          defaultValue="any"
         />
         <FormHelperText>
           {errors.language && errors.language.message}
@@ -123,10 +132,10 @@ const FilterForm = (props) => {
       <FormControl className={classes.select} error={!!errors.category}>
         <InputLabel>Category</InputLabel>
         <Controller
-          as={getSelection(categories)}
+          as={(props) => getSelection(props, categories)}
           name="category"
           control={control}
-          defaultValue=""
+          defaultValue="any"
         />
         <FormHelperText>
           {errors.category && errors.category.message}
@@ -135,10 +144,10 @@ const FilterForm = (props) => {
       <FormControl className={classes.select} error={!!errors.security}>
         <InputLabel>Security</InputLabel>
         <Controller
-          as={getSelection(security)}
+          as={(props) => getSelection(props, security)}
           name="security"
           control={control}
-          defaultValue=""
+          defaultValue="any"
         />
         <FormHelperText>
           {errors.security && errors.security.message}
@@ -147,10 +156,10 @@ const FilterForm = (props) => {
       <FormControl className={classes.select} error={!!errors.privacy}>
         <InputLabel>Privacy</InputLabel>
         <Controller
-          as={getSelection(privacy)}
-          name="Privacy"
+          as={(props) => getSelection(props, privacy)}
+          name="privacy"
           control={control}
-          defaultValue=""
+          defaultValue="any"
         />
         <FormHelperText>
           {errors.privacy && errors.privacy.message}
@@ -159,10 +168,10 @@ const FilterForm = (props) => {
       <FormControl className={classes.select} error={!!errors.mirroring}>
         <InputLabel>Mirroring</InputLabel>
         <Controller
-          as={getSelection(mirroring)}
-          name="Mirroring"
+          as={(props) => getSelection(props, mirroring)}
+          name="mirroring"
           control={control}
-          defaultValue=""
+          defaultValue="any"
         />
         <FormHelperText>
           {errors.mirroring && errors.privacy.mirroring}
@@ -171,10 +180,10 @@ const FilterForm = (props) => {
       <FormControl className={classes.select} error={!!errors.status}>
         <InputLabel>Status</InputLabel>
         <Controller
-          as={getSelection(status)}
-          name="Status"
+          as={(props) => getSelection(props, status)}
+          name="status"
           control={control}
-          defaultValue=""
+          defaultValue="any"
         />
         <FormHelperText>
           {errors.status && errors.status.message}
@@ -183,10 +192,10 @@ const FilterForm = (props) => {
       <FormControl className={classes.select} error={!!errors.cryptos}>
         <InputLabel>Cryptos</InputLabel>
         <Controller
-          as={getSelection(cryptos)}
-          name="Cryptos"
+          as={(props) => getSelection(props, cryptos)}
+          name="cryptos"
           control={control}
-          defaultValue=""
+          defaultValue="any"
         />
         <FormHelperText>
           {errors.cryptos && errors.cryptos.message}

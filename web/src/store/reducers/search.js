@@ -1,18 +1,19 @@
 // Types
-import * as types from "../actions/search/types";
+import * as types from '../actions/search/types';
 
 // Shared
-import { updateObject } from "../../utils";
+import { updateObject } from '../../utils';
 
 // State
 const initialState = {
   data: {
-    query: "",
+    query: '',
+    filter: {},
     results: [],
     noResults: false,
     isPaged: false,
     pagination: {},
-    source: "web",
+    source: 'web',
   },
   error: null,
   isBusy: true,
@@ -27,7 +28,7 @@ const reducer = (state = initialState, action) => {
         data: updateObject(state.data, {
           results: sourceSwitched ? [] : state.data.results,
           query: action.payload.query,
-          isPaged: sourceSwitched ? false :action.payload.isPaged,
+          isPaged: sourceSwitched ? false : action.payload.isPaged,
           pagination: sourceSwitched ? {} : state.data.pagination,
           noResults: sourceSwitched ? false : state.data.noResults,
           source: action.payload.source,
@@ -55,9 +56,24 @@ const reducer = (state = initialState, action) => {
         isBusy: false,
       });
     }
+    // Set
+    case types.SET_FILTER: {
+      return updateObject(state, {
+        data: updateObject(state.data, {
+          filter: action.payload,
+        }),
+      });
+    }
     // Reset
     case types.RESET: {
       return initialState;
+    }
+    case types.RESET_FILTER: {
+      return updateObject(state, {
+        data: updateObject(state.data, {
+          filter: initialState.data.filter,
+        }),
+      });
     }
     // Default
     default: {
