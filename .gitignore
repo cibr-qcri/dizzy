@@ -4,3 +4,5 @@ mongo
 # Misc
 .DS_Store
 ~$*
+
+**/.idea
