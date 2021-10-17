@@ -7,6 +7,9 @@ import _ from 'lodash';
 // Redux
 import { batch } from 'react-redux';
 
+// Constants
+import { SEARCH_FILTER_ANY } from '../../../constants/search';
+
 // Creators
 import * as creators from './creators';
 import { showAlert } from '../';
@@ -22,7 +25,9 @@ export const getWebResults = (query, filter, isPaged = false) => {
     }
 
     for (const key in filter) {
-      searchUrl += `&${key}=${filter[key]}`;
+      if (filter[key] !== SEARCH_FILTER_ANY.type) {
+        searchUrl += `&${key}=${filter[key]}`;
+      }
     }
 
     axios

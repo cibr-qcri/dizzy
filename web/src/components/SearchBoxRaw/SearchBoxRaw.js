@@ -44,10 +44,12 @@ const SearchBoxRaw = (props) => {
 
   // Handlers
   const filterShowHandler = () => {
+    setShowFilter(!showFilter);
+
+    // Reset filter when hidden
     if (showFilter) {
       dispatch(resetFilter());
     }
-    setShowFilter(!showFilter);
   };
 
   const queryChangeHandler = (event) => {
