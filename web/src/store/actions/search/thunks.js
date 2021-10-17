@@ -4,6 +4,9 @@ import axios from 'axios';
 // Lodash
 import _ from 'lodash';
 
+// QueryString
+import qs from 'qs';
+
 // Redux
 import { batch } from 'react-redux';
 
@@ -18,17 +21,23 @@ export const getWebResults = (query, filter, isPaged = false) => {
   return (dispatch, getState) => {
     dispatch(creators.getResultsStart({ query, isPaged, source: 'web' }));
 
-    let searchUrl = '/search/web?query=' + query;
+    let queryParams = {
+      query,
+      filter: _.pickBy(filter, (value, _) => {
+        return value !== SEARCH_FILTER_ANY.type;
+      }),
+    };
+
     if (isPaged) {
       const { page, limit } = getState().search.data.pagination.next;
-      searchUrl += `&page=${page}&limit=${limit}`;
+      queryParams = {
+        ...queryParams,
+        page,
+        limit,
+      };
     }
 
-    for (const key in filter) {
-      if (filter[key] !== SEARCH_FILTER_ANY.type) {
-        searchUrl += `&${key}=${filter[key]}`;
-      }
-    }
+    const searchUrl = `/search/web?${qs.stringify(queryParams)}`;
 
     axios
       .get(searchUrl)
