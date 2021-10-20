@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
 
 // Schema
-const UserSchema = new mongoose.Schema(
+const userSchema = new mongoose.Schema(
   {
     email: {
       type: String,
@@ -43,7 +43,7 @@ const UserSchema = new mongoose.Schema(
 );
 
 // Hooks
-UserSchema.pre('save', async function saltAndHashPassword(next) {
+userSchema.pre('save', async function saltAndHashPassword(next) {
   if (!this.isModified('password')) {
     next();
   }
@@ -51,28 +51,30 @@ UserSchema.pre('save', async function saltAndHashPassword(next) {
   this.password = await bcrypt.hash(this.password, salt);
 });
 
-UserSchema.pre('remove', async function (next) {
+userSchema.pre('remove', async function (next) {
   await this.model('Alert').deleteMany({ user: this._id });
-  await this.model('Feedback').deleteMany({ user: this._id });
-  await this.model('Tag').deleteMany({ user: this._id });
-  console.log(
-    `Alerts, feedbacks, and tags of user ${this._id} have been removed`.green
-  );
+  console.log(`Alerts of user ${this._id} have been removed`.green);
   next();
 });
 
 // Methods
-UserSchema.methods.getSignedJwtToken = function () {
+userSchema.methods.generateAuthToken = function () {
   return jwt.sign({ id: this._id }, process.env.JWT_SECRET, {
-    expiresIn: process.env.JWT_EXPIRE_DAYS,
+    expiresIn: process.env.JWT_AUTH_EXPIRE_DAYS,
   });
 };
 
-UserSchema.methods.matchPassword = async function (enteredPassword) {
+userSchema.methods.generateActivationToken = function () {
+  return jwt.sign({ id: this._id }, process.env.JWT_SECRET, {
+    expiresIn: process.env.JWT_ACTIVATION_EXPIRE_DAYS,
+  });
+};
+
+userSchema.methods.matchPassword = async function (enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password);
 };
 
-UserSchema.methods.getResetPasswordToken = function () {
+userSchema.methods.generateResetPasswordToken = function () {
   const resetToken = crypto.randomBytes(20).toString('hex');
   this.resetPasswordToken = crypto
     .createHash('sha256')
@@ -83,4 +85,4 @@ UserSchema.methods.getResetPasswordToken = function () {
   return resetToken;
 };
 
-module.exports = mongoose.model('User', UserSchema);
+module.exports = mongoose.model('User', userSchema);

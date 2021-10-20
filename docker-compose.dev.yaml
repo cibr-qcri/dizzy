@@ -48,7 +48,8 @@ services:
       ES_CRAWLER_INDEX: 'darkweb-tor-index'
       ES_RECRAWLER_INDEX: 'darkweb-tor-recrawler-index'
       JWT_SECRET: 'UJl5Y8nK7b7TNjz8'
-      JWT_EXPIRE_DAYS: '30d'
+      JWT_AUTH_EXPIRE_DAYS: '30d'
+      JWT_ACTIVATION_EXPIRE_DAYS: '3d'
       JWT_COOKIE_EXPIRE_MS: 2592000000
       LOGOUT_COOKIE_EXPIRE_MS: 10000
       RESET_PASSWORD_EXPIRE_MS: 600000
