@@ -1,23 +1,23 @@
 // React
-import React, { useEffect } from "react";
+import React, { useEffect } from 'react';
 
 // Redux
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from 'react-redux';
 
 // Router
-import { Redirect } from "react-router-dom";
+import { Redirect } from 'react-router-dom';
 
 // Material
-import { Typography } from "@material-ui/core";
+import { Typography } from '@material-ui/core';
 
 // Components
-import Form from "./Form";
+import Form from './Form';
 
 // Store
-import { resetRedirect } from "../../store/actions";
+import { resetRedirect } from '../../store/actions';
 
 // Styles
-import { useStyles, Logo, Switcher } from "./SignIn-styles";
+import { useStyles, Logo, Switcher } from './SignIn-styles';
 
 export const SignIn = () => {
   // Variables

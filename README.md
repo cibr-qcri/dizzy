@@ -11,7 +11,7 @@ docker-compose -f docker-compose.dev.yml up --build --detach
 # In production
 # Clone the repo in /usr/local directory if not found
 cd /usr/local/dizzy && git pull
-docker-compose -f docker-compose.prod.yml up --build --detach
+SMTP_PASSWORD=<REPLACE> docker-compose -f docker-compose.prod.yml up --build --detach
 ```
 
 ## Stopping

@@ -50,14 +50,16 @@ services:
       JWT_SECRET: 'UJl5Y8nK7b7TNjz8'
       JWT_AUTH_EXPIRE_DAYS: '30d'
       JWT_ACTIVATION_EXPIRE_DAYS: '3d'
-      JWT_COOKIE_EXPIRE_MS: 2592000000
+      JWT_COOKIE_EXPIRE_MS: 259200000
       LOGOUT_COOKIE_EXPIRE_MS: 10000
       RESET_PASSWORD_EXPIRE_MS: 600000
+      ACCOUNT_ACTIVIATION_URL: 'http://localhost:3000/activate'
+      ACCOUNT_ACTIVIATION_EXPIRE_MS: 259200000
       SMTP_HOST: 'smtp.mailtrap.io'
       SMTP_PORT: 2525
-      SMTP_EMAIL: '19ff6cf1be8f11'
-      SMTP_PASSWORD: 'd90003bf257b39'
-      FROM_EMAIL: 'no-reply@dizzy.cibr.qcri.org'
+      SMTP_EMAIL: '8258c23ad8ff6c'
+      SMTP_PASSWORD: '1d76a9fb7b31ed'
+      FROM_EMAIL: 'noreply@mail.cibr.qcri.org'
       FROM_NAME: 'Dizzy'
     ports:
       - '5000:5000'

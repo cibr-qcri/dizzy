@@ -1,8 +1,8 @@
 // Types
-import * as types from "../actions/user/types";
+import * as types from '../actions/user/types';
 
 // Utils
-import { updateObject } from "../../utils";
+import { updateObject } from '../../utils';
 
 // State
 const initialState = {
@@ -11,6 +11,7 @@ const initialState = {
   error: null,
   isBusy: false,
   signedUp: false,
+  activated: false,
 };
 
 const reducer = (state = initialState, action) => {
@@ -136,6 +137,25 @@ const reducer = (state = initialState, action) => {
       });
     }
     case types.UPDATE_ACCOUNT_FAILURE: {
+      return updateObject(state, {
+        error: action.payload,
+        isBusy: false,
+      });
+    }
+    //Activate
+    case types.ACTIVATE_ACCOUNT_START: {
+      return updateObject(state, {
+        error: null,
+        isBusy: true,
+      });
+    }
+    case types.ACTIVATE_ACCOUNT_SUCCESS: {
+      return updateObject(state, {
+        activated: true,
+        isBusy: false,
+      });
+    }
+    case types.ACTIVATE_ACCOUNT_FAILURE: {
       return updateObject(state, {
         error: action.payload,
         isBusy: false,

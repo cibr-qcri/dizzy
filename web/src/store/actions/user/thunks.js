@@ -1,6 +1,9 @@
 // Axios
 import axios from 'axios';
 
+// Lodash
+import _ from 'lodash';
+
 // Redux
 import { batch } from 'react-redux';
 
@@ -24,8 +27,11 @@ export const createAccount = (data) => {
     dispatch(creators.createAccountStart());
     axios
       .post('/auth/signup', data)
-      .then((_response) => {
-        dispatch(creators.createAccountSuccess());
+      .then(() => {
+        batch(() => {
+          dispatch(creators.createAccountSuccess());
+          dispatch(showAlert('Activation email sent', 'success'));
+        });
       })
       .catch((error) => {
         batch(() => {
@@ -177,6 +183,27 @@ export const updateAccount = (data) => {
         batch(() => {
           dispatch(creators.updateAccountFailure(error));
           dispatch(showAlert());
+        });
+      });
+  };
+};
+
+// Activate
+export const activateAccount = (token) => {
+  return (dispatch) => {
+    dispatch(creators.activateAccountStart());
+    axios
+      .get(`/auth/activate/${token}`)
+      .then(() => {
+        batch(() => {
+          dispatch(creators.activateAccountSuccess());
+          dispatch(showAlert('Account activated. Thank you!', 'success'));
+        });
+      })
+      .catch((error) => {
+        batch(() => {
+          dispatch(creators.activateAccountFailure(error));
+          dispatch(showAlert(_.get(error, 'response.data.error')));
         });
       });
   };

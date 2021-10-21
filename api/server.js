@@ -75,9 +75,11 @@ app.listen(
 
 // Cron jobs
 const sendAlerts = require('./jobs/sendAlerts');
+const deleteInactiveUsers = require('./jobs/deleteInactiveUsers');
 const computeStats = require('./jobs/computeStats');
 
 cron.schedule('0 0 * * *', sendAlerts(host, port)); // Every day at midnight
+cron.schedule('0 0 * * *', deleteInactiveUsers);
 cron.schedule('0 0 * * *', computeStats);
 
 // Unhandled errors

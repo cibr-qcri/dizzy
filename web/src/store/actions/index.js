@@ -48,6 +48,7 @@ export {
   createTag,
   getAccount,
   getAccountOnAuth,
+  activateAccount,
   updateAccount,
   deleteAccount,
   getAlerts as getUserAlerts,

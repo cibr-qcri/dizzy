@@ -2,7 +2,7 @@ const asyncForEach = require('../utils/asyncForEach');
 const Alert = require('../models/Alert');
 const User = require('../models/User');
 const os = require('os');
-const sendEmail = require('../utils/sendEmail');
+const { sendEmail } = require('../utils/mail');
 
 const sendAlerts = (host, port) => async () => {
   console.log(`[cron:sendAlerts] Server running a scheduled job`.magenta);

@@ -2,7 +2,7 @@ const asyncHandler = require('../middleware/async');
 const crypto = require('crypto');
 const ErrorResponse = require('../utils/errorResponse');
 const User = require('../models/User');
-const sendEmail = require('../utils/sendEmail');
+const { sendEmail } = require('../utils/mail');
 const sendTokenResponse = require('../utils/sendTokenResponse');
 
 // @desc      Triggers password reset flow

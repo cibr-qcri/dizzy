@@ -1,5 +1,5 @@
 // Types
-import * as types from "./types";
+import * as types from './types';
 
 // Create
 export const createAccountStart = () => ({
@@ -95,6 +95,20 @@ export const updateAccountSuccess = (data) => ({
 
 export const updateAccountFailure = (error) => ({
   type: types.UPDATE_ACCOUNT_FAILURE,
+  payload: error,
+});
+
+// Activate
+export const activateAccountStart = () => ({
+  type: types.ACTIVATE_ACCOUNT_START,
+});
+
+export const activateAccountSuccess = () => ({
+  type: types.ACTIVATE_ACCOUNT_SUCCESS,
+});
+
+export const activateAccountFailure = (error) => ({
+  type: types.ACTIVATE_ACCOUNT_FAILURE,
   payload: error,
 });
 

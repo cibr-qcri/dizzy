@@ -31,6 +31,9 @@ const lazyComp = {
   Account: lazy(() => {
     return import('../Account');
   }),
+  Activate: lazy(() => {
+    return import('../Activate');
+  }),
   Alerts: lazy(() => {
     return import('../Alerts');
   }),
@@ -80,6 +83,7 @@ const App = () => {
   let routes = (
     <Switch>
       <Route path="/signin" component={lazyComp.SignIn} />
+      <Route path="/activate/:token" component={lazyComp.Activate} />
       <Route path="/signup" component={lazyComp.SignUp} />
       <Route path="/main" component={Main} />
       <Route from="/search/web" component={AuthRedirect} />
