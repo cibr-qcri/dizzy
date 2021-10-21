@@ -1,3 +1,4 @@
+const jwt = require('jsonwebtoken');
 const asyncHandler = require('../middleware/async');
 const ErrorResponse = require('../utils/errorResponse');
 const User = require('../models/User');
@@ -20,6 +21,10 @@ const signin = asyncHandler(async (request, response, next) => {
   const match = await user.matchPassword(password);
   if (!match) {
     return next(new ErrorResponse('Invalid credentials', 401));
+  }
+
+  if (!user.isActivated) {
+    return next(new ErrorResponse('User is not activated', 400));
   }
 
   sendTokenResponse(user, 200, response);
@@ -54,6 +59,29 @@ const signup = asyncHandler(async (request, response, next) => {
   });
 });
 
+// @desc Acivate a user account
+// @route GET /api/v1/auth/activate/:token
+// @access Public
+const activate = asyncHandler(async (request, response, next) => {
+  let decodedToken = null;
+
+  try {
+    decodedToken = jwt.verify(request.params.token, process.env.JWT_SECRET);
+  } catch (error) {
+    return next(new ErrorResponse('Invalid activation token', 400));
+  }
+
+  const user = await User.updateOne(decodedToken._id, {
+    isActivated: true,
+  });
+
+  request.user = user;
+  response.json(user);
+
+  next();
+});
+
 exports.signin = signin;
 exports.signout = signout;
 exports.signup = signup;
+exports.activate = activate;

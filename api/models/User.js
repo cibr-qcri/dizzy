@@ -20,6 +20,10 @@ const userSchema = new mongoose.Schema(
       minlength: 6,
       select: false,
     },
+    isActivated: {
+      type: Boolean,
+      default: false,
+    },
     name: {
       type: String,
       default: '',
