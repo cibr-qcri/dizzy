@@ -3,6 +3,7 @@ const ErrorResponse = require('../utils/errorResponse');
 const es = require('../services/es');
 const moment = require('moment');
 const Search = require('../models/Search');
+const Statistic = require("../models/Statistic");
 
 const MAX_RESULTS_IN_PAGE = 25;
 const MAX_MIRROR_GROUP_COUNT = 20000;
@@ -126,6 +127,7 @@ const webResults = asyncHandler(async (request, response, next) => {
   );
   const esQuery = `_exists_:data.info.domain_info.language AND (${query}~${queryEditDistance} ${filterQuery})`;
 
+  const availability = await Statistic.findOne({type: 'domain'});
   const results = await es.search({
     index: process.env.ES_CRAWL_INDEX,
     from: startIndex,
@@ -177,6 +179,27 @@ const webResults = asyncHandler(async (request, response, next) => {
     const languageNames = new Intl.DisplayNames(['en'], { type: 'language' });
     const mirrors = mirrorMap[domainInfo.mirror.group];
 
+    let status = 'N/A';
+    let domainAvailability = 'N/A';
+    if(availability) {
+      const domains = availability.computed.domains;
+      const key = hit._source.data.info.domain_info.name.split('.')[0]
+      if(key in domains) {
+        const dayDiff = moment().diff(moment(domains[key].timestamp), 'days') - 1;
+        const minDiff = moment().diff(moment(domains[key].timestamp), 'minutes');
+        if(dayDiff <= 1 && domains[key].is_online) {
+          status = `Online (last checked: ${ (minDiff/60).toFixed(1) } hours ago)`;
+        } else if(dayDiff <= 1 && domains[key].is_offline) {
+          status = `Offline (last checked: ${ (minDiff/60).toFixed(1) } hours ago)`;
+        }
+        domainAvailability = `${ domains[key].availability }% (last 7 days)`;
+      } else {
+        const dayDiff = moment().diff(moment(hit._source.data.timestamp), 'days') - 1;
+        status = `Offline (last checked: ${ dayDiff } days ago)`;
+        domainAvailability = `N/A (last 7 days)`
+      }
+    }
+
     return {
       id: hit._id,
       url: hit._source.data.info.url,
@@ -201,6 +224,14 @@ const webResults = asyncHandler(async (request, response, next) => {
           text: domainInfo.privacy.js.fingerprinting.is_fingerprinted
             ? 'Tracked'
             : 'Not tracked',
+        },
+        {
+          title: 'Status',
+          text: status
+        },
+        {
+          title: 'Availability',
+          text: domainAvailability
         },
         {
           title: 'Mirroring',
