@@ -94,16 +94,16 @@ const FilterForm = () => {
           {errors.cryptos && errors.cryptos.message}
         </FormHelperText>
       </FormControl>
-      <FormControl className={classes.select} error={!!errors.security}>
-        <InputLabel>Security</InputLabel>
+      <FormControl className={classes.select} error={!!errors.safety}>
+        <InputLabel>Safety</InputLabel>
         <Controller
-          as={(props) => getSelection(props, SEARCH_FILTER.security)}
-          name="security"
+          as={(props) => getSelection(props, SEARCH_FILTER.safety)}
+          name="safety"
           control={control}
           defaultValue="any"
         />
         <FormHelperText>
-          {errors.security && errors.security.message}
+          {errors.safety && errors.safety.message}
         </FormHelperText>
       </FormControl>
       <FormControl className={classes.select} error={!!errors.privacy}>

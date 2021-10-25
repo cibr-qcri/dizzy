@@ -18,10 +18,10 @@ export const SEARCH_FILTER = {
     { type: 'btc', label: 'Bitcoin' },
     { type: 'none', label: 'None' },
   ],
-  security: [
+  safety: [
     SEARCH_FILTER_ANY,
-    { type: 'benign', label: 'Benign' },
-    { type: 'malicious', label: 'Malicious' },
+    { type: 'illicit', label: 'Illicit' },
+    { type: 'not-illicit', label: 'Not illicit' },
   ],
   privacy: [
     SEARCH_FILTER_ANY,
