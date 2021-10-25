@@ -23,7 +23,7 @@ const MainAnalytics = () => {
       <div className={classes.features}>
         <Feature iconLigature="category" text="Website categorization" />
         <Feature iconLigature="token" text="Crypto address attribution" />
-        <Feature iconLigature="safety" text="Illicit website detection" />
+        <Feature iconLigature="security" text="Illicit website detection" />
         <Feature iconLigature="lock" text="User tracking detection" />
         {/*<Feature iconLigature="offline_bolt" text="Service status check" />*/}
         <Feature

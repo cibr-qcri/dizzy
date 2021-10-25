@@ -142,7 +142,7 @@ const FilterForm = () => {
           {errors.mirroring && errors.privacy.mirroring}
         </FormHelperText>
       </FormControl>
-      {/* <FormControl className={classes.select} error={!!errors.language}>
+      <FormControl className={classes.select} error={!!errors.language}>
         <InputLabel>Language</InputLabel>
         <Controller
           as={(props) => getSelection(props, SEARCH_FILTER.language)}
@@ -153,7 +153,7 @@ const FilterForm = () => {
         <FormHelperText>
           {errors.language && errors.language.message}
         </FormHelperText>
-      </FormControl> */}
+      </FormControl>
     </form>
   );
 
