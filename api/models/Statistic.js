@@ -9,7 +9,7 @@ const StatisticSchema = new mongoose.Schema(
     type: {
       type: String,
       required: true,
-      enum: ['batch', 'realtime'],
+      enum: ['index', 'domain'],
     },
   },
   {
