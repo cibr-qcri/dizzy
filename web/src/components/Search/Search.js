@@ -60,14 +60,13 @@ export const Search = () => {
   }
 
   let alertSwitcher = null;
-  // TODO: Uncomment when alerts are implemented
-  // alertSwitcher = (
-  //   <Switcher
-  //     question="Want to stay updated"
-  //     action="Set an alert"
-  //     clicked={alertHandler}
-  //   />
-  // );
+  alertSwitcher = (
+    <Switcher
+      question="Want to stay updated"
+      action="Set an alert"
+      clicked={alertHandler}
+    />
+  );
 
   let content = (
     <Fragment>
