@@ -115,12 +115,10 @@ const App = () => {
   }
 
   const view = (
-    <BrowserRouter>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        {layout}
-      </ThemeProvider>
-    </BrowserRouter>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      {layout}
+    </ThemeProvider>
   );
   return view;
 };
