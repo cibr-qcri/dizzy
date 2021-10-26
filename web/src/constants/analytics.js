@@ -7,8 +7,6 @@
  * */
 const EVENTS = {
   general: {
-    appVisibilityChanged: 'app visibility changed',
-    appFocusChanged: 'app focus changed',
     appPathChanged: 'app path changed',
   },
 };

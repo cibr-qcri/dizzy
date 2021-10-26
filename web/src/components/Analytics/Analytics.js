@@ -114,32 +114,6 @@ const AnalyticsProvider = ({
   // Redux
   const userId = useSelector((state) => state.user.data._id);
 
-  // Browser Utils
-  const getBrowserVisibilityProp = useCallback(() => {
-    if (typeof document.hidden !== 'undefined') {
-      // Opera 12.10 and Firefox 18 and later support
-      return 'visibilitychange';
-    } else if (typeof document.msHidden !== 'undefined') {
-      return 'msvisibilitychange';
-    } else if (typeof document.webkitHidden !== 'undefined') {
-      return 'webkitvisibilitychange';
-    }
-  }, []);
-
-  const getBrowserDocumentHiddenProp = useCallback(() => {
-    if (typeof document.hidden !== 'undefined') {
-      return 'hidden';
-    } else if (typeof document.msHidden !== 'undefined') {
-      return 'msHidden';
-    } else if (typeof document.webkitHidden !== 'undefined') {
-      return 'webkitHidden';
-    }
-  }, []);
-
-  const getIsDocumentHidden = useCallback(() => {
-    return !document[getBrowserDocumentHiddenProp()];
-  }, [getBrowserDocumentHiddenProp]);
-
   // Handlers
   const handleUserIdChanged = useCallback(
     async (userId) => {
@@ -148,18 +122,6 @@ const AnalyticsProvider = ({
     },
     [setUserId]
   );
-
-  const handleVisibilityChanged = useCallback(() => {
-    track(EVENTS.general.appVisibilityChanged, {
-      isVisible: getIsDocumentHidden(),
-    });
-  }, [getIsDocumentHidden, track]);
-
-  const handleFocusChanged = useCallback(() => {
-    track(EVENTS.general.appFocusChanged, {
-      isFocused: document.hasFocus(),
-    });
-  }, [track]);
 
   const handlePathChanged = useCallback(
     (location) => {
@@ -221,33 +183,6 @@ const AnalyticsProvider = ({
   useEffect(() => {
     initializeTracker();
   }, [amplitude, initializeTracker]);
-
-  useEffect(() => {
-    if (amplitudeIsInit) {
-      const visibilityChange = getBrowserVisibilityProp();
-      document.addEventListener(
-        visibilityChange,
-        handleVisibilityChanged,
-        false
-      );
-
-      return () => {
-        document.removeEventListener(visibilityChange, handleVisibilityChanged);
-      };
-    }
-  }, [getBrowserVisibilityProp, handleVisibilityChanged, amplitudeIsInit]);
-
-  useEffect(() => {
-    if (amplitudeIsInit) {
-      window.addEventListener('focus', handleFocusChanged, false);
-      window.addEventListener('blur', handleFocusChanged, false);
-
-      return () => {
-        window.removeEventListener('focus', handleFocusChanged);
-        window.removeEventListener('blur', handleFocusChanged);
-      };
-    }
-  }, [handleFocusChanged, amplitudeIsInit]);
 
   useEffect(() => {
     if (amplitudeIsInit) {
