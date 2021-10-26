@@ -43,8 +43,8 @@ services:
       RESET_PASSWORD_EXPIRE_MS: 600000
       ACCOUNT_ACTIVIATION_URL: 'https://dizzy.cibr.qcri.org/activate'
       ACCOUNT_ACTIVIATION_EXPIRE_MS: 259200000
-      SEARCH_ALERTS_URL: 'http://dizzy.cibr.qcri.org/alerts'
-      SEARCH_WEB_URL: 'http://dizzy.cibr.qcri.org/search/web'
+      SEARCH_ALERTS_URL: 'https://dizzy.cibr.qcri.org/alerts'
+      SEARCH_WEB_URL: 'https://dizzy.cibr.qcri.org/search/web'
       SMTP_HOST: 'smtp.office365.com'
       SMTP_PORT: 587
       SMTP_EMAIL: 'dizzy.cibr@qcri.org'
