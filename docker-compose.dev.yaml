@@ -56,6 +56,8 @@ services:
       RESET_PASSWORD_EXPIRE_MS: 600000
       ACCOUNT_ACTIVIATION_URL: 'http://localhost:3000/activate'
       ACCOUNT_ACTIVIATION_EXPIRE_MS: 259200000
+      SEARCH_ALERTS_URL: 'http://localhost:3000/alerts'
+      SEARCH_WEB_URL: 'http://localhost:3000/search/web'
       SMTP_HOST: 'smtp.mailtrap.io'
       SMTP_PORT: 2525
       SMTP_EMAIL: '8258c23ad8ff6c'

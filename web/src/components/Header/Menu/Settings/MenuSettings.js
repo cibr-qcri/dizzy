@@ -63,17 +63,16 @@ const MenuSettings = (props) => {
   }
 
   let alerts = null;
-  // TODO: Uncommment when alerts are implemented
-  // if (isAuth) {
-  //   alerts = (
-  //     <ListItem button component={NavLink} to="/alerts" onClick={onClose}>
-  //       <ListItemIcon>
-  //         <AlertIcon />
-  //       </ListItemIcon>
-  //       <ListItemText primary="Alerts" />
-  //     </ListItem>
-  //   );
-  // }
+  if (isAuth) {
+    alerts = (
+      <ListItem button component={NavLink} to="/alerts" onClick={onClose}>
+        <ListItemIcon>
+          <AlertIcon />
+        </ListItemIcon>
+        <ListItemText primary="Alerts" />
+      </ListItem>
+    );
+  }
 
   const darkMode = (
     <ListItem>
