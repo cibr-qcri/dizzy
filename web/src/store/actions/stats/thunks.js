@@ -10,7 +10,6 @@ export const getStats = (type = 'index') => {
     axios
       .get(`/statistics?type=${type}`)
       .then((response) => {
-        console.log(response);
         dispatch(creators.getStatsSuccess(response.data.data));
       })
       .catch((error) => {
