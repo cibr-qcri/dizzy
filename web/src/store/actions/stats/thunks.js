@@ -4,12 +4,13 @@ import axios from 'axios';
 // Creators
 import * as creators from './creators';
 
-export const getStats = () => {
+export const getStats = (type = 'index') => {
   return (dispatch) => {
     dispatch(creators.getStatsStart());
     axios
-      .get('/statistics')
+      .get(`/statistics?type=${type}`)
       .then((response) => {
+        console.log(response);
         dispatch(creators.getStatsSuccess(response.data.data));
       })
       .catch((error) => {

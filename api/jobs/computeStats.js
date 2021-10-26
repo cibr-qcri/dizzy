@@ -13,15 +13,15 @@ const computeStats = async () => {
     console.log(error);
   }
 
-  const index = {};
+  const count = {};
   try {
-    index.page = await getPageCount();
-    index.domain = await getDomainCount();
-    index.crypto = await getCryptoCount();
+    count.page = await getPageCount();
+    count.domain = await getDomainCount();
+    count.crypto = await getCryptoCount();
     await Statistic.create({
       type: 'index',
       computed: {
-        index
+        count,
       },
     });
   } catch (error) {
@@ -34,11 +34,13 @@ const computeStats = async () => {
     await Statistic.create({
       type: 'domain',
       computed: {
-        domains
+        domains,
       },
     });
   } catch (error) {
-    console.log(`[cron:computeStats] Error while computing domain availability`.red);
+    console.log(
+      `[cron:computeStats] Error while computing domain availability`.red
+    );
     console.log(error);
   }
 };
@@ -105,27 +107,27 @@ const getDomainStatus = async () => {
       aggs: {
         domains: {
           terms: {
-            field: "domain",
-            size: MAX_AVAILABLE_DOMAINS
+            field: 'domain',
+            size: MAX_AVAILABLE_DOMAINS,
           },
           aggs: {
             domainStatus: {
               top_hits: {
-                _source: ["timestamp", "is_online"],
+                _source: ['timestamp', 'is_online'],
                 size: 1,
                 sort: [
                   {
                     timestamp: {
-                      order: "desc"
-                    }
-                  }
-                ]
-              }
-            }
-          }
-        }
-      }
-    }
+                      order: 'desc',
+                    },
+                  },
+                ],
+              },
+            },
+          },
+        },
+      },
+    },
   });
 
   const domains = {};
@@ -136,7 +138,7 @@ const getDomainStatus = async () => {
   }
 
   for (const domain of Object.keys(domains)) {
-    if(domain in availability) {
+    if (domain in availability) {
       domains[domain].availability = availability[domain];
     } else {
       domains[domain].availability = 0;
@@ -144,7 +146,7 @@ const getDomainStatus = async () => {
   }
 
   return domains;
-}
+};
 
 const getDomainAvailability = async () => {
   let result = await es.search({
@@ -155,27 +157,27 @@ const getDomainAvailability = async () => {
         range: {
           timestamp: {
             gte: 'now-7d/d',
-            lt: 'now/d'
-          }
-        }
+            lt: 'now/d',
+          },
+        },
       },
       aggs: {
         availability: {
           date_histogram: {
             field: 'timestamp',
             interval: '1d',
-            min_doc_count: 0
+            min_doc_count: 0,
           },
           aggs: {
             domains: {
               terms: {
                 field: 'domain.keyword',
-                size: MAX_AVAILABLE_DOMAINS
-              }
-            }
-          }
-        }
-      }
+                size: MAX_AVAILABLE_DOMAINS,
+              },
+            },
+          },
+        },
+      },
     },
   });
 
@@ -184,7 +186,7 @@ const getDomainAvailability = async () => {
   for (const bucket of buckets) {
     for (const domainEntry of bucket.domains.buckets) {
       const key = domainEntry.key.split('.')[0];
-      if(key in domains) {
+      if (key in domains) {
         domains[key] += 1;
       } else {
         domains[key] = 1;

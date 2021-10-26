@@ -42,6 +42,7 @@ services:
       PORT: 5000
       RATE_LIMIT_WINDOW_MS: 60000
       RATE_LIMIT_MAX: 100
+      RUN_JOBS_STARTUP: 'true'
       MONGO_URI: 'mongodb://mongo:27017/dizzy'
       ES_URI: 'http://es.cibr.qcri.org'
       ES_PING_TIMEOUT_MS: 20000

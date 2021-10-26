@@ -5,15 +5,26 @@ const ErrorResponse = require('../utils/errorResponse');
 // @desc      Get statistic
 // @route     GET /api/v1/statistics
 const getStatistics = asyncHandler(async (request, response, next) => {
-  const statistics = await Statistic.find().sort({ _id: -1 }).limit(1);
+  const { type } = request.query;
+  const allowedTypes = ['index'];
 
-  if (!statistics || statistics.length !== 1) {
+  if (!type) {
+    return next(new ErrorResponse('Please provide a statistic type', 400));
+  }
+
+  if (!allowedTypes.includes(type)) {
+    return next(new ErrorResponse(`Invalid statistic type`, 401));
+  }
+
+  const statistics = await Statistic.findOne({ type });
+
+  if (!statistics) {
     return next(new ErrorResponse('There are no statistics available', 404));
   }
 
   return response.status(200).json({
     success: true,
-    data: statistics[0],
+    data: statistics,
   });
 });
 
