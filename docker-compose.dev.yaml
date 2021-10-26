@@ -75,6 +75,8 @@ services:
     build:
       context: ./web
       dockerfile: Dockerfile.dev
+      args:
+        - REACT_APP_AMPLITUDE_API_KEY=${AMPLITUDE_DEV_API_KEY}
     volumes:
       - ./web:/app
       - web-node-modules:/app/node_modules

@@ -60,6 +60,8 @@ services:
     build:
       context: ./web
       dockerfile: Dockerfile.prod
+      args:
+        - REACT_APP_AMPLITUDE_API_KEY=${AMPLITUDE_PROD_API_KEY}
     environment:
       NODE_ENV: 'production'
     restart: always

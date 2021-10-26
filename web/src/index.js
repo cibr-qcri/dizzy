@@ -2,6 +2,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+// Router
+import { BrowserRouter } from 'react-router-dom';
+
 // Axios
 import axios from 'axios';
 
@@ -12,8 +15,8 @@ import { Provider } from 'react-redux';
 // Redux-Thunk
 import thunk from 'redux-thunk';
 
-// Mocks
-//import "./mocks";
+// Analytics
+import AnalyticsProvider from './components/Analytics';
 
 // Reducers
 import authReducer from './store/reducers/auth';
@@ -26,7 +29,6 @@ import userReducer from './store/reducers/user';
 
 // App
 import App from './components/App';
-import * as serviceWorker from './serviceWorker';
 
 axios.defaults.baseURL = 'https://dizzy.cibr.qcri.org/api/v1';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
@@ -55,13 +57,12 @@ const store = createStore(
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <BrowserRouter>
+        <AnalyticsProvider>
+          <App />
+        </AnalyticsProvider>
+      </BrowserRouter>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
-
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
