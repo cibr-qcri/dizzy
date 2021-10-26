@@ -25,12 +25,12 @@ const MainAnalytics = () => {
         <Feature iconLigature="token" text="Crypto address attribution" />
         <Feature iconLigature="security" text="Illicit website detection" />
         <Feature iconLigature="lock" text="User tracking detection" />
-        {/*<Feature iconLigature="offline_bolt" text="Service status check" />*/}
         <Feature
           iconLigature="content_copy"
           text="Mirrored website detection"
         />
-        {/*<Feature iconLigature="language" text="Language detection" />*/}
+        <Feature iconLigature="language" text="Website language detection" />
+        <Feature iconLigature="offline_bolt" text="Service status check" />
       </div>
     </div>
   );
