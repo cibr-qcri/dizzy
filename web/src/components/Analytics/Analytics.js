@@ -55,6 +55,8 @@ const getTrackingFunctions = (optionsRef) => {
           )}.`
         );
       }
+    } else {
+      amplitude.logEvent(event, properties);
     }
   };
 
@@ -71,6 +73,8 @@ const getTrackingFunctions = (optionsRef) => {
             )}.`
           );
         }
+      } else {
+        amplitude.setUserProperties(properties);
       }
     }
   };
@@ -83,6 +87,8 @@ const getTrackingFunctions = (optionsRef) => {
       if (logToConsole) {
         console.info(`[analytics] Tracking user with id ${userId}.`);
       }
+    } else {
+      amplitude.setUserId(userId);
     }
   };
 

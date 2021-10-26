@@ -58,7 +58,7 @@ ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
-        <AnalyticsProvider>
+        <AnalyticsProvider devOptions={{ logToTracker: true }}>
           <App />
         </AnalyticsProvider>
       </BrowserRouter>

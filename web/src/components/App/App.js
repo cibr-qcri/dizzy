@@ -2,7 +2,7 @@
 import React, { lazy, useEffect, Suspense, useCallback } from 'react';
 
 // Router
-import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 
 // Redux
 import { useDispatch, useSelector } from 'react-redux';
