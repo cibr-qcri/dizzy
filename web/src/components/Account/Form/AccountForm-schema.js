@@ -1,7 +1,8 @@
 // Yup
-import * as yup from "yup";
+import * as yup from 'yup';
 
 export const accountFormSchema = yup.object().shape({
-  name: yup.string().required(),
-  company: yup.string().required(),
+  firstName: yup.string().required(),
+  lastName: yup.string().required(),
+  organization: yup.string().required(),
 });

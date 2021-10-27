@@ -52,17 +52,24 @@ const signout = asyncHandler(async (request, response, next) => {
 // @route     POST /api/v1/auth/signup
 // @access    Public
 const signup = asyncHandler(async (request, response, next) => {
-  const { email, password } = request.body;
+  const { firstName, lastName, organization, email, password } = request.body;
 
   let user = await User.findOne({ email });
   if (user) {
     return next(new ErrorResponse('User account already exists', 400));
   } else {
-    user = await User.create({ email, password });
+    user = await User.create({
+      firstName,
+      lastName,
+      organization,
+      email,
+      password,
+    });
   }
 
   const emailTemplate = activationEmailTemplate({
     to: user.email,
+    firstName: user.firstName,
     url: process.env.ACCOUNT_ACTIVIATION_URL,
     token: user.generateActivationToken(process.env.JWT_ACTIVATION_EXPIRE_DAYS),
   });

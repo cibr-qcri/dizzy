@@ -1,23 +1,23 @@
 // React
-import React from "react";
+import React from 'react';
 
 // Redux
-import { useDispatch } from "react-redux";
+import { useDispatch } from 'react-redux';
 
 // Hook Form
-import { useForm } from "react-hook-form";
+import { useForm } from 'react-hook-form';
 
 // Schema
-import { signUpFormSchema } from "./SignUpForm-schema";
+import { signUpFormSchema } from './SignUpForm-schema';
 
 // Material
-import { Button, Paper, TextField } from "@material-ui/core";
+import { Button, Paper, TextField } from '@material-ui/core';
 
 // Store
-import { createAccount } from "../../../store/actions";
+import { createAccount } from '../../../store/actions';
 
 // Styles
-import { useStyles } from "./SignUpForm-styles";
+import { useStyles } from './SignUpForm-styles';
 
 const SignUpForm = () => {
   // Variables
@@ -43,6 +43,30 @@ const SignUpForm = () => {
         onSubmit={handleSubmit(signUpHandler)}
         noValidate
       >
+        <TextField
+          className={classes.text}
+          inputRef={register}
+          error={!!errors.firstName}
+          helperText={errors.firstName && errors.firstName.message}
+          label="First Name"
+          name="firstName"
+        />
+        <TextField
+          className={classes.text}
+          inputRef={register}
+          error={!!errors.lastName}
+          helperText={errors.lastName && errors.lastName.message}
+          label="Last Name"
+          name="lastName"
+        />
+        <TextField
+          className={classes.text}
+          inputRef={register}
+          error={!!errors.organization}
+          helperText={errors.organization && errors.organization.message}
+          label="Organization"
+          name="organization"
+        />
         <TextField
           className={classes.text}
           inputRef={register}

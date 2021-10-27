@@ -19,6 +19,7 @@ const sendAlerts = async () => {
       })}`;
       const emailTemplate = searchAlertEmailTemplate({
         to: user.email,
+        firstName: user.firstName,
         query: alert.query,
         searchUrl: searchUrl,
         alertsUrl: process.env.SEARCH_ALERTS_URL,

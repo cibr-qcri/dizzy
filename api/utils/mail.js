@@ -1,6 +1,6 @@
 const nodemailer = require('nodemailer');
 
-exports.activationEmailTemplate = ({ to, url, token }) => {
+exports.activationEmailTemplate = ({ to, firstName, url, token }) => {
   return {
     to,
     subject: 'Account activation',
@@ -10,7 +10,7 @@ exports.activationEmailTemplate = ({ to, url, token }) => {
         <meta http-equiv="Content-Type" content="text/html; charset=us-ascii">
       </head>
       <body>
-        <p>Hi there,</p>
+        <p>Hi ${firstName},</p>
         <p>Your user account has been created. To activate it, click <a href=${url}/${token}>here</a>.
         <p>The Dizzy team</p>
       </body>
@@ -19,7 +19,13 @@ exports.activationEmailTemplate = ({ to, url, token }) => {
   };
 };
 
-exports.searchAlertEmailTemplate = ({ to, query, searchUrl, alertsUrl }) => {
+exports.searchAlertEmailTemplate = ({
+  to,
+  firstName,
+  query,
+  searchUrl,
+  alertsUrl,
+}) => {
   return {
     to,
     subject: 'New search results',
@@ -29,7 +35,7 @@ exports.searchAlertEmailTemplate = ({ to, query, searchUrl, alertsUrl }) => {
         <meta http-equiv="Content-Type" content="text/html; charset=us-ascii">
       </head>
       <body>
-        <p>Hi there,</p>
+        <p>Hi ${firstName},</p>
         <p>We have new search results for the query "${query}".</p>
         <p>To see the results, click <a href=${searchUrl}>here</a>. 
         To manage your alerts, click <a href=${alertsUrl}>here</a>.</p>

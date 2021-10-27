@@ -25,7 +25,11 @@ export const Account = () => {
       <Typography className={classes.typography}>
         Manage your account
       </Typography>
-      <Form name={userData.name} company={userData.company} />
+      <Form
+        firstName={userData.firstName}
+        lastName={userData.lastName}
+        organization={userData.organization}
+      />
       <Switcher
         question="Interesting search"
         action="Check this out"

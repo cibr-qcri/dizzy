@@ -1,29 +1,29 @@
 // React
-import React from "react";
+import React from 'react';
 
 // Redux
-import { useDispatch } from "react-redux";
+import { useDispatch } from 'react-redux';
 
 // Hook Form
-import { useForm, Controller } from "react-hook-form";
+import { useForm, Controller } from 'react-hook-form';
 
 // Schema
-import { accountFormSchema } from "./AccountForm-schema";
+import { accountFormSchema } from './AccountForm-schema';
 
 // Material
-import { Button, Paper, TextField } from "@material-ui/core";
+import { Button, Paper, TextField } from '@material-ui/core';
 
 // Store
-import { updateAccount } from "../../../store/actions";
+import { updateAccount } from '../../../store/actions';
 
 // Styles
-import { useStyles } from "./AccountForm-styles";
+import { useStyles } from './AccountForm-styles';
 
 const AccountForm = (props) => {
   // Variables
   const classes = useStyles();
   const dispatch = useDispatch();
-  const { name, company } = props;
+  const { firstName, lastName, organization } = props;
   const { handleSubmit, errors, control } = useForm({
     validationSchema: accountFormSchema,
   });
@@ -48,21 +48,31 @@ const AccountForm = (props) => {
           className={classes.text}
           as={<TextField />}
           control={control}
-          defaultValue={name}
-          error={!!errors.name}
-          helperText={errors.name && errors.name.message}
-          label="Full Name"
-          name="name"
+          defaultValue={firstName}
+          error={!!errors.firstName}
+          helperText={errors.firstName && errors.firstName.message}
+          label="First Name"
+          name="firstName"
         />
         <Controller
           className={classes.text}
           as={<TextField />}
           control={control}
-          defaultValue={company}
-          error={!!errors.company}
-          helperText={errors.company && errors.company.message}
-          label="Company"
-          name="company"
+          defaultValue={lastName}
+          error={!!errors.lastName}
+          helperText={errors.lastName && errors.lastName.message}
+          label="Last Name"
+          name="lastName"
+        />
+        <Controller
+          className={classes.text}
+          as={<TextField />}
+          control={control}
+          defaultValue={organization}
+          error={!!errors.organization}
+          helperText={errors.organization && errors.organization.message}
+          label="Organization"
+          name="organization"
         />
         <Button
           className={classes.button}

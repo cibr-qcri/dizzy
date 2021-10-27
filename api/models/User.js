@@ -7,30 +7,34 @@ const mongoose = require('mongoose');
 // Schema
 const userSchema = new mongoose.Schema(
   {
+    firstName: {
+      type: String,
+      required: true,
+    },
+    lastName: {
+      type: String,
+      required: true,
+    },
+    organization: {
+      type: String,
+      required: true,
+    },
     email: {
       type: String,
       lowercase: true,
-      required: [true, 'Please provide an email address'],
+      required: true,
       unique: true,
-      match: [filters.email, 'Please provide a valid email address'],
+      match: filters.email,
     },
     password: {
       type: String,
-      required: [true, 'Please provide a password'],
+      required: true,
       minlength: 6,
       select: false,
     },
     isActivated: {
       type: Boolean,
       default: false,
-    },
-    name: {
-      type: String,
-      default: '',
-    },
-    company: {
-      type: String,
-      default: '',
     },
     resetPasswordExpire: {
       type: Date,
