@@ -1,20 +1,20 @@
 // React
-import React from "react";
+import React from 'react';
 
 // Redux
-import { useSelector } from "react-redux";
+import { useSelector } from 'react-redux';
 
 // Router
-import { Redirect } from "react-router-dom";
+import { Redirect } from 'react-router-dom';
 
 // Material
-import { Typography } from "@material-ui/core";
+import { Typography } from '@material-ui/core';
 
 // Components
-import Form from "./Form";
+import Form from './Form';
 
 // Styles
-import { useStyles, Logo, Switcher } from "./SignUp-styles";
+import { useStyles, Logo, Switcher } from './SignUp-styles';
 
 export const SignUp = () => {
   // Variables

@@ -73,30 +73,11 @@ app.listen(
   )
 );
 
-// Jobs
-const sendAlerts = require('./jobs/sendAlerts');
-const deleteInactiveUsers = require('./jobs/deleteInactiveUsers');
-const computeStats = require('./jobs/computeStats');
-
-if (process.env.RUN_JOBS_STARTUP === 'true') {
-  console.log('Running jobs on startup...'.green);
-  deleteInactiveUsers();
-  computeStats();
-
-  if (process.env.NODE_ENV === 'developement') {
-    sendAlerts();
-  }
-}
-
-if (process.env.NODE_ENV === 'developement') {
-  console.log('Cron jobs are disabled in developement mode'.yellow);
-} else {
-  cron.schedule('0 0 * * *', sendAlerts); // Every day at midnight
-  cron.schedule('0 0 * * *', deleteInactiveUsers);
-  cron.schedule('0 0 * * *', computeStats);
-}
-
 // Unhandled errors
 process.on('unhandledRejection', (error, promise) => {
   console.log(`Error: ${error.message}`.red);
 });
+
+// Jobs
+const initJobs = require('./jobs');
+initJobs();

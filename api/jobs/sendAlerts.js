@@ -23,7 +23,7 @@ const sendAlerts = async () => {
         searchUrl: searchUrl,
         alertsUrl: process.env.SEARCH_ALERTS_URL,
       });
-      sendEmail(emailTemplate);
+      await sendEmail(emailTemplate);
     } catch (error) {
       console.log(`${error}`.red);
       console.log(

@@ -45,3 +45,4 @@ export const DELETE_ALERT_FAILURE = 'user/deleteAlertFailure';
 
 // Reset
 export const RESET = 'user/reset';
+export const RESET_CREATE_ACCOUNT = 'user/resetCreateAccount';

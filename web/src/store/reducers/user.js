@@ -197,6 +197,11 @@ const reducer = (state = initialState, action) => {
     // Reset
     case types.RESET:
       return initialState;
+    case types.RESET_CREATE_ACCOUNT: {
+      return updateObject(state, {
+        signedUp: initialState.signedUp,
+      });
+    }
     // Default
     default: {
       return state;

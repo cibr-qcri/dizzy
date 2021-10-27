@@ -36,7 +36,7 @@ export const createAccount = (data) => {
       .catch((error) => {
         batch(() => {
           dispatch(creators.createAccountFailure(error));
-          dispatch(showAlert());
+          dispatch(showAlert(_.get(error, 'response.data.error')));
         });
       });
   };

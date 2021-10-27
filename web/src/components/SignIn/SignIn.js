@@ -14,7 +14,7 @@ import { Typography } from '@material-ui/core';
 import Form from './Form';
 
 // Store
-import { resetRedirect } from '../../store/actions';
+import { resetUserSignUp, resetRedirect } from '../../store/actions';
 
 // Styles
 import { useStyles, Logo, Switcher } from './SignIn-styles';
@@ -29,8 +29,11 @@ export const SignIn = () => {
 
   // Hooks
   useEffect(() => {
+    if (signedUp) {
+      dispatch(resetUserSignUp());
+    }
     return () => isAuth && dispatch(resetRedirect());
-  }, [dispatch, isAuth]);
+  }, [dispatch, isAuth, signedUp]);
 
   // JSX
   let switcher = (
@@ -40,10 +43,6 @@ export const SignIn = () => {
       path="/signup"
     />
   );
-
-  if (signedUp) {
-    switcher = null;
-  }
 
   let view = (
     <div className={classes.root}>

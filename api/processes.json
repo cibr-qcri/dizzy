@@ -6,7 +6,8 @@
       "merge_logs": true,
       "max_restarts": 20,
       "instances": 4,
-      "max_memory_restart": "200M"
+      "max_memory_restart": "200M",
+      "instance_var": "PM2_INSTANCE_ID"
     }
   ]
 }

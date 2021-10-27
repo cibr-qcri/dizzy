@@ -40,7 +40,10 @@ export { getThemeMode, setThemeMode } from './theme/thunks';
 export { showAlert, hideAlert } from './toast/creators';
 
 // User
-export { reset as resetUser } from './user/creators';
+export {
+  reset as resetUser,
+  resetCreateAccount as resetUserSignUp,
+} from './user/creators';
 export {
   createAccount,
   createAlert,

@@ -52,7 +52,14 @@ const signout = asyncHandler(async (request, response, next) => {
 // @route     POST /api/v1/auth/signup
 // @access    Public
 const signup = asyncHandler(async (request, response, next) => {
-  const user = await User.create(request.body);
+  const { email, password } = request.body;
+
+  let user = await User.findOne({ email });
+  if (user) {
+    return next(new ErrorResponse('User account already exists', 400));
+  } else {
+    user = await User.create({ email, password });
+  }
 
   const emailTemplate = activationEmailTemplate({
     to: user.email,
@@ -60,7 +67,11 @@ const signup = asyncHandler(async (request, response, next) => {
     token: user.generateActivationToken(process.env.JWT_ACTIVATION_EXPIRE_DAYS),
   });
 
-  sendEmail(emailTemplate);
+  try {
+    await sendEmail(emailTemplate);
+  } catch (error) {
+    return next(new ErrorResponse('Could not send activation email', 500));
+  }
 
   response.status(200).json({
     success: true,

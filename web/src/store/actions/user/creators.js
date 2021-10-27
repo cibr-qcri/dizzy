@@ -143,3 +143,7 @@ export const deleteAlertFailure = (error) => ({
 export const reset = () => ({
   type: types.RESET,
 });
+
+export const resetCreateAccount = () => ({
+  type: types.RESET_CREATE_ACCOUNT,
+});
