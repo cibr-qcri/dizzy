@@ -2,7 +2,6 @@ const colors = require('colors');
 const connectDB = require('./services/db');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
-const cron = require('node-cron');
 const errorHandler = require('./middleware/error');
 const express = require('express');
 const helmet = require('helmet');

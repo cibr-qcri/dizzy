@@ -1,3 +1,5 @@
+const cron = require('node-cron');
+
 const computeStats = require('./computeStats');
 const deleteInactiveUsers = require('./deleteInactiveUsers');
 const sendAlerts = require('./sendAlerts');
