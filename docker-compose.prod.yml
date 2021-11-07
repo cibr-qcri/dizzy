@@ -51,9 +51,9 @@ services:
       SEARCH_WEB_URL: 'https://dizzy.cibr.qcri.org/search/web'
       SMTP_HOST: 'smtp.office365.com'
       SMTP_PORT: 587
-      SMTP_EMAIL: 'dizzy.cibr@qcri.org'
+      SMTP_EMAIL: 'noreply@mail.cibr.qcri.org'
       SMTP_PASSWORD: ${SMTP_PASSWORD}
-      FROM_EMAIL: 'dizzy.cibr@qcri.org'
+      FROM_EMAIL: 'noreply@mail.cibr.qcri.org'
       FROM_NAME: 'Dizzy'
     restart: always
     stdin_open: true
