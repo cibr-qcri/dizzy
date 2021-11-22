@@ -150,17 +150,28 @@ const getDomainStatus = async () => {
 
 const getDomainAvailability = async () => {
   let result = await es.search({
-    index: process.env.ES_HEALTHCHECK_INDEX_OLD,
+    index: process.env.ES_HEALTHCHECK_INDEX,
     size: 0,
     body: {
       query: {
-        range: {
-          timestamp: {
-            gte: 'now-7d/d',
-            lt: 'now/d',
-          },
-        },
-      },
+        bool: {
+          must: [
+            {
+              term: {
+                is_online: true
+              }
+            },
+            {
+              range: {
+                timestamp: {
+                  gte: 'now-7d/d',
+                  lt: 'now/d'
+                }
+              }
+            }
+          ]
+        }
+    },
       aggs: {
         availability: {
           date_histogram: {
@@ -171,7 +182,7 @@ const getDomainAvailability = async () => {
           aggs: {
             domains: {
               terms: {
-                field: 'domain.keyword',
+                field: 'domain',
                 size: MAX_AVAILABLE_DOMAINS,
               },
             },
