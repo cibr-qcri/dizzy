@@ -59,7 +59,22 @@ const getPageCount = async () => {
       },
     },
   });
-  return result.body.aggregations.pageCount.value;
+
+  let resultOld = await es.search({
+    index: [process.env.ES_OLD_CRAWLER_INDEX],
+    size: 0,
+    body: {
+      aggs: {
+        pageCount: {
+          cardinality: {
+            field: 'info.url',
+          },
+        },
+      },
+    },
+  });
+
+  return (result.body.aggregations.pageCount.value + resultOld.body.aggregations.pageCount.value);
 };
 
 const getDomainCount = async () => {
