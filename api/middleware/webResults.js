@@ -131,7 +131,7 @@ const webResults = asyncHandler(async (request, response, next) => {
 
   const domainStatistic = await Statistic.findOne({ type: 'domain' });
   const results = await es.search({
-    index: process.env.ES_CRAWL_INDEX,
+    index: process.env.ES_CRAWLER_INDEX,
     from: startIndex,
     size: limit,
     body: {
