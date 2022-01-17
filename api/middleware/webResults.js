@@ -127,7 +127,7 @@ const webResults = asyncHandler(async (request, response, next) => {
   const queryEditDistance =
     parseInt(query.length) / QUERY_EDIT_DISTANCE_FRACTION;
 
-  const esQuery = `_exists_:data.info.domain_info.language AND (${query}~${queryEditDistance} ${filterQuery})`;
+  const esQuery = `_exists_:data.info.domain_info.language AND (${query} ${filterQuery})`;
 
   const domainStatistic = await Statistic.findOne({ type: 'domain' });
   const results = await es.search({
