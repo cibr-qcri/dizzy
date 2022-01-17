@@ -38,7 +38,7 @@ services:
       ES_URI: 'http://es.cibr.qcri.org'
       ES_PING_TIMEOUT_MS: 20000
       ES_CRAWLER_INDEX: 'darkweb-tor-index-single'
-      ES_OLD_CRAWLER_INDEX: 'tor-temp'
+      ES_OLD_CRAWLER_SIZE: 48107548
       ES_RECRAWLER_INDEX: 'darkweb-tor-recrawler-index'
       JWT_SECRET: 'UJl5Y8nK7b7TNjz8'
       JWT_AUTH_EXPIRE_DAYS: '30d'
