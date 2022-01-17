@@ -59,7 +59,7 @@ const getPageCount = async () => {
       },
     },
   });
-  return (result.body.aggregations.pageCount.value + process.env.ES_OLD_CRAWLER_SIZE);
+  return (result.body.aggregations.pageCount.value + parseInt(process.env.ES_OLD_CRAWLER_SIZE));
 };
 
 const getDomainCount = async () => {
