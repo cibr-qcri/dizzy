@@ -1,33 +1,30 @@
+#   port mappings
+#
+#   service         local -> host
+#   ------------------------------
+#   mongo           27017 -> 8083
+#   mongo-express   8081  -> 8082
+#   api             5000  -> 8081
+#   web             3000  -> 8080
+
 version: '3.3'
 services:
-  proxy:
-    container_name: proxy
-    build:
-      context: ./proxy
-    links:
-      - web
-    ports:
-      - '80:80'
-    restart: 'no'
   mongo:
-    container_name: 'mongo'
     image: mongo:5.0-focal
     ports:
-      - '27017:27017'
+      - '8083:27017'
     volumes:
       - mongo-data:/data/db
       - mongo-config:/data/configdb
     restart: 'no'
   mongo-express:
-    container_name: 'mongo-express'
     image: mongo-express
     ports:
-      - '8081:8081'
+      - '8082:8081'
     depends_on:
       - mongo
     restart: 'no'
   api:
-    container_name: api
     links:
       - mongo
     build:
@@ -55,10 +52,10 @@ services:
       JWT_COOKIE_EXPIRE_MS: 259200000
       LOGOUT_COOKIE_EXPIRE_MS: 10000
       RESET_PASSWORD_EXPIRE_MS: 600000
-      ACCOUNT_ACTIVIATION_URL: 'http://localhost:3000/activate'
+      ACCOUNT_ACTIVIATION_URL: 'http://localhost:8080/activate'
       ACCOUNT_ACTIVIATION_EXPIRE_MS: 259200000
-      SEARCH_ALERTS_URL: 'http://localhost:3000/alerts'
-      SEARCH_WEB_URL: 'http://localhost:3000/search/web'
+      SEARCH_ALERTS_URL: 'http://localhost:8080/alerts'
+      SEARCH_WEB_URL: 'http://localhost:8080/search/web'
       SMTP_HOST: 'smtp.mailtrap.io'
       SMTP_PORT: 2525
       SMTP_EMAIL: '8258c23ad8ff6c'
@@ -66,10 +63,9 @@ services:
       FROM_EMAIL: 'noreply@mail.cibr.qcri.org'
       FROM_NAME: 'Dizzy'
     ports:
-      - '5000:5000'
+      - '8081:5000'
     restart: 'no'
   web:
-    container_name: web
     depends_on:
       - api
     stdin_open: true
@@ -84,7 +80,7 @@ services:
     environment:
       NODE_ENV: 'developement'
     ports:
-      - '3000:3000'
+      - '8080:3000'
     restart: 'no'
 
 volumes:

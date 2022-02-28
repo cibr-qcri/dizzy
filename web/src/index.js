@@ -35,7 +35,7 @@ axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 let composeEnhancers = compose;
 if (process.env.NODE_ENV === 'development') {
-  axios.defaults.baseURL = 'http://localhost:5000/api/v1';
+  axios.defaults.baseURL = 'http://localhost:8081/api/v1';
   composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 }
 

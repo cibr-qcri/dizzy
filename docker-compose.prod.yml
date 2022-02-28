@@ -1,7 +1,12 @@
+#   port mappings
+#
+#   service         local -> host
+#   ------------------------------
+#   proxy            80    -> 8080
+
 version: '3.3'
 services:
   proxy:
-    container_name: proxy
     build:
       context: ./proxy
     links:
@@ -12,7 +17,6 @@ services:
     stdin_open: true
     tty: true
   mongo:
-    container_name: 'mongo'
     image: mongo:5.0-focal
     volumes:
       - mongo-data:/data/db
@@ -21,7 +25,6 @@ services:
     stdin_open: true
     tty: true
   api:
-    container_name: api
     links:
       - mongo
     build:
@@ -60,10 +63,8 @@ services:
     stdin_open: true
     tty: true
   web:
-    container_name: web
     depends_on:
       - api
-    stdin_open: true
     build:
       context: ./web
       dockerfile: Dockerfile.prod
