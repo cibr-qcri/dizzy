@@ -60,8 +60,8 @@ services:
       SEARCH_WEB_URL: 'http://localhost:3000/search/web'
       SMTP_HOST: 'smtp.mailtrap.io'
       SMTP_PORT: 2525
-      SMTP_EMAIL: '8258c23ad8ff6c'
-      SMTP_PASSWORD: '1d76a9fb7b31ed'
+      SMTP_EMAIL: '571098c753e080'
+      SMTP_PASSWORD: '79c540062fd5bb'
       FROM_EMAIL: 'noreply@mail.cibr.qcri.org'
       FROM_NAME: 'Dizzy'
     ports:
