@@ -181,8 +181,6 @@ const webResults = asyncHandler(async (request, response, next) => {
     const languageNames = new Intl.DisplayNames(['en'], { type: 'language' });
     const mirrors = mirrorMap[domainInfo.mirror.group];
 
-    let status = 'Offline (11 hours ago)';
-    let availability = '0% (last 7 days)';
     if (domainStatistic && domainStatistic.computed) {
       const domains = domainStatistic.computed.domains;
       const domain = hit._source.data.info.domain_info.name.split('.')[0];
