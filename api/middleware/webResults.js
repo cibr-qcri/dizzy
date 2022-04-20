@@ -181,9 +181,7 @@ const webResults = asyncHandler(async (request, response, next) => {
     const languageNames = new Intl.DisplayNames(['en'], { type: 'language' });
     const mirrors = mirrorMap[domainInfo.mirror.group];
 
-    let status = 'N/A';
-    let availability = 'N/A';
-    if (domainStatistic) {
+    if (domainStatistic && domainStatistic.computed) {
       const domains = domainStatistic.computed.domains;
       const domain = hit._source.data.info.domain_info.name.split('.')[0];
       if (domain in domains) {
@@ -196,7 +194,7 @@ const webResults = asyncHandler(async (request, response, next) => {
           status = `${onlineStr} (a few minutes ago)`;
         } else {
           const hourStr = hourDiff === 1 ? 'hour' : 'hours';
-          status = `${onlineStr} (${hourDiff} ${hourStr} ago)`;
+          status = `${onlineStr} (${hourDiff % 24} ${hourStr} ago)`;
         }
         availability = `${domains[domain].availability}% (last 7 days)`;
       }
