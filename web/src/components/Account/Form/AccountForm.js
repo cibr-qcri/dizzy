@@ -2,7 +2,7 @@
 import React from 'react';
 
 // Redux
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 // Hook Form
 import { useForm, Controller } from 'react-hook-form';
@@ -11,13 +11,13 @@ import { useForm, Controller } from 'react-hook-form';
 import { accountFormSchema } from './AccountForm-schema';
 
 // Material
-import { Button, Paper, TextField } from '@material-ui/core';
+import { Paper, TextField } from '@material-ui/core';
 
 // Store
 import { updateAccount } from '../../../store/actions';
 
 // Styles
-import { useStyles } from './AccountForm-styles';
+import { useStyles, Button } from './AccountForm-styles';
 
 const AccountForm = (props) => {
   // Variables
@@ -27,6 +27,7 @@ const AccountForm = (props) => {
   const { handleSubmit, errors, control } = useForm({
     validationSchema: accountFormSchema,
   });
+  const isBusy = useSelector((state) => state.user.isBusy);
 
   // Handlers
   const updateAccountHandler = (data) => {
@@ -74,15 +75,7 @@ const AccountForm = (props) => {
           label="Organization"
           name="organization"
         />
-        <Button
-          className={classes.button}
-          variant="contained"
-          color="primary"
-          size="large"
-          type="submit"
-        >
-          Update
-        </Button>
+        <Button title="Update" loading={isBusy} type="submit" />
       </Paper>
     </div>
   );

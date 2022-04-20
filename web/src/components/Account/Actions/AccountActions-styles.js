@@ -1,5 +1,6 @@
 // Components
 import PromptDialogRaw, { promptDialogStyler } from '../../PromptDialogRaw';
+import ButtonRaw, { buttonStyler } from '../../ButtonRaw';
 
 // Utils
 import { makeStyles, withStyles } from '../../../utils';
@@ -9,8 +10,9 @@ export const stylesCreator = (theme) => ({
     root: {
       width: '100%',
       maxWidth: 460,
-      paddingLeft: theme.spacing(2),
-      paddingRight: theme.spacing(2),
+      paddingLeft: theme.spacing(1),
+      paddingRight: theme.spacing(1),
+      marginTop: theme.spacing(1),
     },
     button: {
       width: '100%',
@@ -21,6 +23,12 @@ export const stylesCreator = (theme) => ({
     },
   },
   PromptDialogRaw: promptDialogStyler(theme).Default,
+  ButtonRaw: {
+    ...buttonStyler(theme).Default,
+    root: {
+      margin: theme.spacing(1),
+    },
+  },
 });
 
 // Local
@@ -28,3 +36,4 @@ export const useStyles = makeStyles(stylesCreator);
 
 // HOCs
 export const PromptDialog = withStyles(stylesCreator, PromptDialogRaw);
+export const Button = withStyles(stylesCreator, ButtonRaw);

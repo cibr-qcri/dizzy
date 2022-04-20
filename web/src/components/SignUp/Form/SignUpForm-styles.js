@@ -1,23 +1,29 @@
-// Shared
-import { makeStyles } from "../../../utils";
+// Components
+import ButtonRaw, { buttonStyler } from '../../ButtonRaw';
+
+// Utils
+import { makeStyles, withStyles } from '../../../utils';
 
 export const stylesCreator = (theme) => ({
   Default: {
     root: {
-      width: "100%",
+      width: '100%',
       maxWidth: 460,
       paddingLeft: theme.spacing(2),
       paddingRight: theme.spacing(2),
     },
     paper: {
       padding: theme.spacing(1),
-      display: "flex",
-      flexDirection: "column",
+      display: 'flex',
+      flexDirection: 'column',
     },
     text: {
       margin: theme.spacing(1),
     },
-    button: {
+  },
+  ButtonRaw: {
+    ...buttonStyler(theme).Default,
+    root: {
       margin: theme.spacing(1),
     },
   },
@@ -25,3 +31,6 @@ export const stylesCreator = (theme) => ({
 
 // Local
 export const useStyles = makeStyles(stylesCreator);
+
+// HOC
+export const Button = withStyles(stylesCreator, ButtonRaw);
