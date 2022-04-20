@@ -14,7 +14,7 @@ import { Typography } from '@material-ui/core';
 import Form from './Form';
 
 // Styles
-import { useStyles, Logo, Switcher } from './SignUp-styles';
+import { useStyles, Switcher } from './SignUp-styles';
 
 export const SignUp = () => {
   // Variables
@@ -24,7 +24,6 @@ export const SignUp = () => {
   // JSX
   let view = (
     <div className={classes.root}>
-      <Logo />
       <Typography className={classes.typography}>
         Sign up for a new account
       </Typography>

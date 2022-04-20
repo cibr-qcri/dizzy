@@ -1,17 +1,23 @@
 // Components
-import LogoRaw, { logoStyler } from "../LogoRaw";
+import LogoRaw, { logoStyler } from '../LogoRaw';
 
 // Utils
-import { makeStyles, withStyles } from "../../utils";
+import { makeStyles, withStyles } from '../../utils';
 
 export const stylesCreator = (theme) => ({
   Default: {
-    root: {},
+    root: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'center',
+      minHeight: theme.spacing(7),
+    },
     toolbar: {
-      justifyContent: "space-between",
+      position: 'absolute',
+      left: 0,
     },
     link: {
-      textDecoration: "none",
+      textDecoration: 'none',
     },
   },
   LogoRaw: logoStyler(theme).Default,

@@ -5,10 +5,7 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 
 // Redux
-import { useDispatch } from 'react-redux';
-
-// Material
-import { Button } from '@material-ui/core';
+import { useDispatch, useSelector } from 'react-redux';
 
 // Store
 import {
@@ -19,13 +16,14 @@ import {
 } from '../../../store/actions';
 
 // Styles
-import { useStyles, PromptDialog } from './AccountActions-styles';
+import { useStyles, PromptDialog, Button } from './AccountActions-styles';
 
 const AccountActions = (props) => {
   // Variables
   const classes = useStyles();
   const dispatch = useDispatch();
   const history = useHistory();
+  const isBusy = useSelector((state) => state.auth.isBusy);
 
   // Handlers
   const signOutHandler = (event) => {
@@ -49,26 +47,13 @@ const AccountActions = (props) => {
   // JSX
   const view = (
     <div className={classes.root}>
+      <Button onClick={signOutHandler} title="Sign out" loading={isBusy} />
       <Button
-        className={classes.button}
-        variant="contained"
-        color="primary"
-        size="large"
-        type="submit"
-        onClick={signOutHandler}
-      >
-        Sign out
-      </Button>
-      <Button
-        className={classes.button}
-        variant="contained"
         color="secondary"
-        size="large"
         type="submit"
         onClick={deleteAccountHandler}
-      >
-        Delete Account
-      </Button>
+        title="Delete Account"
+      />
       <PromptDialog
         title="Delete Account"
         content="Are you sure you want to delete your account?"

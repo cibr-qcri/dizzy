@@ -1,16 +1,17 @@
 // React
-import React from "react";
+import React from 'react';
 
 // Material
-import { Drawer, Divider } from "@material-ui/core";
+import { Drawer, Divider } from '@material-ui/core';
 
 // Components
-import Settings from "./Settings";
-import Info from "./Info";
-import Outreach from "./Outreach";
+import General from './General';
+import Settings from './Settings';
+import Info from './Info';
+import Outreach from './Outreach';
 
 // Styles
-import { useStyles } from "./HeaderMenu-styles";
+import { useStyles } from './HeaderMenu-styles';
 
 const HeaderMenu = (props) => {
   // Variables
@@ -27,6 +28,8 @@ const HeaderMenu = (props) => {
         onClose={onClose}
         ModalProps={{ keepMounted: true }}
       >
+        <General onClose={onClose} />
+        <Divider />
         <Settings onClose={onClose} isAuth={isAuth} />
         <Divider />
         <Info />

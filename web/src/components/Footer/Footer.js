@@ -15,7 +15,7 @@ const Footer = () => {
   const view = (
     <div className={classes.root}>
       <Typography variant="caption">
-        &copy; 2020 CIBR &mdash; An initiative by QCRI
+        &copy; 2022 CIBR &mdash; An initiative by QCRI
       </Typography>
     </div>
   );

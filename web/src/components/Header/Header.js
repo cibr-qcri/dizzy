@@ -12,7 +12,6 @@ import { Menu as MenuIcon } from '@material-ui/icons';
 import { AppBar, IconButton, Toolbar } from '@material-ui/core';
 
 // Components
-import Action from './Action';
 import Menu from './Menu';
 
 // Styles
@@ -24,7 +23,7 @@ const Header = () => {
   const [open, setOpen] = useState(false);
   const location = useLocation();
   const isAuth = useSelector((state) => state.auth.data.token !== null);
-  const showLogo = isAuth && location.pathname !== '/main';
+  const showLogo = location.pathname !== '/main';
 
   // Handlers
   const toggleMenuHandler = () => {
@@ -50,9 +49,8 @@ const Header = () => {
           >
             <MenuIcon />
           </IconButton>
-          {showLogo ? <Logo height={25} /> : null}
-          <Action isAuth={isAuth} />
         </Toolbar>
+        {showLogo ? <Logo height={24} /> : null}
       </AppBar>
     </Fragment>
   );

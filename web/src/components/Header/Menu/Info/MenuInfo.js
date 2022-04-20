@@ -31,13 +31,25 @@ const MenuInfo = () => {
   const view = (
     <div className={classes.root}>
       <List className={classes.list} subheader={header}>
-        <ListItem button component="a" href={aboutLink} rel="noopener">
+        <ListItem
+          button
+          component="a"
+          href={aboutLink}
+          target="_blank"
+          rel="noopener"
+        >
           <ListItemIcon>
             <AboutUsIcon />
           </ListItemIcon>
           <ListItemText primary="About Us" />
         </ListItem>
-        <ListItem button component="a" href={researchLink} rel="noopener">
+        <ListItem
+          button
+          component="a"
+          href={researchLink}
+          target="_blank"
+          rel="noopener"
+        >
           <ListItemIcon>
             <ResearchIcon />
           </ListItemIcon>

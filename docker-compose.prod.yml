@@ -1,7 +1,12 @@
+#   port mappings
+#
+#   service         local -> host
+#   ------------------------------
+#   proxy            80    -> 8080
+
 version: '3.3'
 services:
   proxy:
-    container_name: proxy
     build:
       context: ./proxy
     links:
@@ -12,7 +17,6 @@ services:
     stdin_open: true
     tty: true
   mongo:
-    container_name: 'mongo'
     image: mongo:5.0-focal
     volumes:
       - mongo-data:/data/db
@@ -21,7 +25,6 @@ services:
     stdin_open: true
     tty: true
   api:
-    container_name: api
     links:
       - mongo
     build:
@@ -38,6 +41,7 @@ services:
       ES_URI: 'http://es.cibr.qcri.org'
       ES_PING_TIMEOUT_MS: 20000
       ES_CRAWLER_INDEX: 'darkweb-tor-index'
+      ES_OLD_CRAWLER_SIZE: 48107548
       ES_RECRAWLER_INDEX: 'darkweb-tor-recrawler-index'
       JWT_SECRET: 'UJl5Y8nK7b7TNjz8'
       JWT_AUTH_EXPIRE_DAYS: '30d'
@@ -59,10 +63,8 @@ services:
     stdin_open: true
     tty: true
   web:
-    container_name: web
     depends_on:
       - api
-    stdin_open: true
     build:
       context: ./web
       dockerfile: Dockerfile.prod

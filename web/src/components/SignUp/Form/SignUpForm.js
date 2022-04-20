@@ -2,7 +2,7 @@
 import React from 'react';
 
 // Redux
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 // Hook Form
 import { useForm } from 'react-hook-form';
@@ -11,13 +11,13 @@ import { useForm } from 'react-hook-form';
 import { signUpFormSchema } from './SignUpForm-schema';
 
 // Material
-import { Button, Paper, TextField } from '@material-ui/core';
+import { Paper, TextField } from '@material-ui/core';
 
 // Store
 import { createAccount } from '../../../store/actions';
 
 // Styles
-import { useStyles } from './SignUpForm-styles';
+import { useStyles, Button } from './SignUpForm-styles';
 
 const SignUpForm = () => {
   // Variables
@@ -26,6 +26,7 @@ const SignUpForm = () => {
   const { register, handleSubmit, errors } = useForm({
     validationSchema: signUpFormSchema,
   });
+  const isBusy = useSelector((state) => state.user.isBusy);
 
   // Handlers
   const signUpHandler = (data) => {
@@ -85,15 +86,7 @@ const SignUpForm = () => {
           name="password"
           type="password"
         />
-        <Button
-          className={classes.button}
-          variant="contained"
-          color="primary"
-          size="large"
-          type="submit"
-        >
-          Sign up
-        </Button>
+        <Button title={'Sign up'} loading={isBusy} />
       </Paper>
     </div>
   );
