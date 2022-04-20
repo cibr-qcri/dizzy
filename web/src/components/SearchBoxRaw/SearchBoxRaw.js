@@ -107,10 +107,15 @@ const SearchBoxRaw = (props) => {
         </IconButton>
         <InputBase
           className={classes.input}
-          type="search"
-          value={query}
+          type="text"
+          value={query ?? ''}
           placeholder={placeholder}
           onChange={queryChangeHandler}
+          inputProps={{
+            autoCorrect: 'off',
+            autoCapitalize: 'off',
+            spellCheck: 'false',
+          }}
         />
         {filterDivier}
       </Paper>
