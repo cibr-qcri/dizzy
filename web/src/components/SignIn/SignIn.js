@@ -17,7 +17,7 @@ import Form from './Form';
 import { resetUserSignUp, resetRedirect } from '../../store/actions';
 
 // Styles
-import { useStyles, Logo, Switcher } from './SignIn-styles';
+import { useStyles, Switcher } from './SignIn-styles';
 
 export const SignIn = () => {
   // Variables
@@ -46,7 +46,6 @@ export const SignIn = () => {
 
   let view = (
     <div className={classes.root}>
-      <Logo />
       <Typography className={classes.typography}>
         Sign in with your account
       </Typography>
