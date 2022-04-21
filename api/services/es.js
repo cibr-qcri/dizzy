@@ -1,6 +1,6 @@
 const { Client } = require('@elastic/elasticsearch');
 
-const es = new Client({ node: process.env.ES_URI });
+const es = new Client({ node: process.env.ES_URI, requestTimeout: 100000 });
 try {
   es.ping();
   console.log(
