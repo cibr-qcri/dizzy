@@ -107,7 +107,7 @@ const getDomainStatus = async () => {
       aggs: {
         domains: {
           terms: {
-            field: 'domain',
+            field: 'domain.keyword',
             size: MAX_AVAILABLE_DOMAINS,
           },
           aggs: {
@@ -182,7 +182,7 @@ const getDomainAvailability = async () => {
           aggs: {
             domains: {
               terms: {
-                field: 'domain',
+                field: 'domain.keyword',
                 size: MAX_AVAILABLE_DOMAINS,
               },
             },
