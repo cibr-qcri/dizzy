@@ -165,7 +165,7 @@ const getDomainAvailability = async () => {
               range: {
                 timestamp: {
                   gte: 'now-7d/d',
-                  lt: 'now/d'
+                  lte: 'now/d'
                 }
               }
             }
