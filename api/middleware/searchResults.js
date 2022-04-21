@@ -1,4 +1,4 @@
-const asyncHandler = require('../middleware/async');
+const asyncHandler = require('./async');
 const ErrorResponse = require('../utils/errorResponse');
 const es = require('../services/es');
 const moment = require('moment');
@@ -50,7 +50,7 @@ const CRYPTOCURRENCY = {
   eth: 'Ethereum',
 };
 
-const webResults = asyncHandler(async (request, response, next) => {
+const searchResults = asyncHandler(async (request, response, next) => {
   const { query, filter } = request.query;
 
   if (!query) {
@@ -181,6 +181,8 @@ const webResults = asyncHandler(async (request, response, next) => {
     const languageNames = new Intl.DisplayNames(['en'], { type: 'language' });
     const mirrors = mirrorMap[domainInfo.mirror.group];
 
+    let status = 'N/A';
+    let availability = 'N/A';
     if (domainStatistic && domainStatistic.computed) {
       const domains = domainStatistic.computed.domains;
       const domain = hit._source.data.info.domain_info.name.split('.')[0];
@@ -264,7 +266,7 @@ const webResults = asyncHandler(async (request, response, next) => {
     }
   }
 
-  response.webResults = {
+  response.searchResults = {
     success: true,
     count: hits.length,
     pagination,
@@ -274,4 +276,4 @@ const webResults = asyncHandler(async (request, response, next) => {
   next();
 });
 
-module.exports = webResults;
+module.exports = searchResults;

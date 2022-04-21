@@ -1,5 +1,5 @@
 // Utils
-import { makeStyles } from "../../../../../utils";
+import { makeStyles } from '../../../../../utils';
 
 export const stylesCreator = (theme) => ({
   Default: {
@@ -9,10 +9,10 @@ export const stylesCreator = (theme) => ({
     },
     typography: {},
     link: {
-      width: "fit-content",
-      "&:hover": {
-        textDecoration: "none",
-        cursor: "pointer",
+      width: 'fit-content',
+      '&:hover': {
+        textDecoration: 'none',
+        cursor: 'pointer',
       },
     },
   },

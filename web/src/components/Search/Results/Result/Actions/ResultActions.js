@@ -1,24 +1,24 @@
 // React
-import React from "react";
+import React from 'react';
 
 // CLSX
-import clsx from "clsx";
+import clsx from 'clsx';
 
 // Redux
-import { useDispatch } from "react-redux";
+import { useDispatch } from 'react-redux';
 
 // Material
 import {
   Label as TagIcon,
   ExpandMore as ExpandMoreIcon,
-} from "@material-ui/icons";
-import { CardActions, IconButton } from "@material-ui/core";
+} from '@material-ui/icons';
+import { CardActions, IconButton } from '@material-ui/core';
 
 // Store
-import { showTagDialog } from "../../../../../store/actions";
+import { showTagDialog } from '../../../../../store/actions';
 
 // Styles
-import { useStyles } from "./ResultActions-styles";
+import { useStyles } from './ResultActions-styles';
 
 const ResultActions = (props) => {
   // Variables

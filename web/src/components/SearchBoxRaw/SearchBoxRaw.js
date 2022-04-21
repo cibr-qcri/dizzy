@@ -61,7 +61,7 @@ const SearchBoxRaw = (props) => {
     event.preventDefault();
     if (query.trim() !== '') {
       const location = {
-        pathname: '/search/web',
+        pathname: '/search',
         search: '?query=' + query,
       };
       if (isAuth) {

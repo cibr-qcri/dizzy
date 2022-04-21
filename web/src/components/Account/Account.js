@@ -33,7 +33,7 @@ export const Account = () => {
       <Switcher
         question="Interesting search"
         action="Check this out"
-        path="/search/web?query=wiki"
+        path="/search/search?query=wiki"
       />
       <Actions />
     </div>

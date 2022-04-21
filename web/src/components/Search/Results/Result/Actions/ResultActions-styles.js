@@ -1,18 +1,18 @@
 // Utils
-import { makeStyles } from "../../../../../utils";
+import { makeStyles } from '../../../../../utils';
 
 export const stylesCreator = (theme) => ({
   Default: {
     root: {},
     expand: {
-      transform: "rotate(0deg)",
-      marginLeft: "auto",
-      transition: theme.transitions.create("transform", {
+      transform: 'rotate(0deg)',
+      marginLeft: 'auto',
+      transition: theme.transitions.create('transform', {
         duration: theme.transitions.duration.shortest,
       }),
     },
     expandOpen: {
-      transform: "rotate(180deg)",
+      transform: 'rotate(180deg)',
     },
   },
 });

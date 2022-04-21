@@ -11,12 +11,12 @@ import { useLocation } from 'react-router-dom';
 import qs from 'qs';
 
 // Components
-import WebResults from './Web/Results/WebResults';
+import Results from './Results';
 import MoreResults from './MoreResults';
 import NoResults from './NoResults';
 
 // Store
-import { getWebResults, showAlertDialog } from '../../store/actions';
+import { getResults, showAlertDialog } from '../../store/actions';
 
 // Styles
 import { useStyles, LazyProgress, SearchBox, Switcher } from './Search-styles';
@@ -32,15 +32,11 @@ export const Search = () => {
   const results = useSelector((state) => state.search.data.results);
   const noResults = useSelector((state) => state.search.data.noResults);
   const pagination = useSelector((state) => state.search.data.pagination);
-  const source = location.pathname.split('/')[2];
 
   // Hooks
   useEffect(() => {
     const query = qs.parse(location.search, { ignoreQueryPrefix: true }).query;
-    const source = location.pathname.split('/')[2];
-    if (source === 'web') {
-      dispatch(getWebResults(query, filter));
-    }
+    dispatch(getResults(query, filter));
   }, [dispatch, filter, location]);
 
   // Handlers
@@ -51,28 +47,18 @@ export const Search = () => {
   // JSX
   let moreResults = null;
   if (pagination.next) {
-    moreResults = <MoreResults query={query} filter={filter} source={source} />;
+    moreResults = <MoreResults query={query} filter={filter} />;
   }
-
-  let searchResults;
-  if (source === 'web') {
-    searchResults = <WebResults items={results} />;
-  }
-
-  let alertSwitcher = null;
-  alertSwitcher = (
-    <Switcher
-      question="Want to stay updated"
-      action="Set an alert"
-      clicked={alertHandler}
-    />
-  );
 
   let content = (
     <Fragment>
-      {searchResults}
+      <Results items={results} />
       {moreResults}
-      {alertSwitcher}
+      <Switcher
+        question="Want to stay updated"
+        action="Set an alert"
+        clicked={alertHandler}
+      />
     </Fragment>
   );
 

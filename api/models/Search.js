@@ -15,11 +15,6 @@ const SearchSchema = new mongoose.Schema(
       type: Object,
       default: {},
     },
-    source: {
-      type: String,
-      required: true,
-      enum: ['web', 'images'],
-    },
   },
   {
     timestamps: true,

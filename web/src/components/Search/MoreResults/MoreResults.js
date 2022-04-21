@@ -8,7 +8,7 @@ import { useDispatch } from 'react-redux';
 import { Button } from '@material-ui/core';
 
 // Store
-import { getWebResults } from '../../../store/actions';
+import { getResults } from '../../../store/actions';
 
 // Styles
 import { useStyles } from './MoreResults-styles';
@@ -17,13 +17,11 @@ const SearchMoreResults = (props) => {
   // Variables
   const classes = useStyles();
   const dispatch = useDispatch();
-  const { query, filter, source } = props;
+  const { query, filter } = props;
 
   // Handlers
   const moreResultsHandler = () => {
-    if (source === 'web') {
-      dispatch(getWebResults(query, filter, true));
-    }
+    dispatch(getResults(query, filter, true));
   };
 
   //JSX

@@ -2,7 +2,7 @@
 import React from 'react';
 
 // Components
-import Message from '../Message';
+import Message from './Message';
 
 // Styles
 import { useStyles, Switcher } from './NoResults-styles';
@@ -18,7 +18,7 @@ const SearchNoResults = (props) => {
       <Switcher
         question="Interesting search"
         action="Check this out"
-        path="/search/web?query=wiki"
+        path="/search/search?query=wiki"
       />
     </div>
   );
