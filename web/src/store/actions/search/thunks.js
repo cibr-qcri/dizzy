@@ -17,9 +17,9 @@ import { SEARCH_FILTER_ANY } from '../../../constants/search';
 import * as creators from './creators';
 import { showAlert } from '../';
 
-export const getWebResults = (query, filter, isPaged = false) => {
+export const getResults = (query, filter, isPaged = false) => {
   return (dispatch, getState) => {
-    dispatch(creators.getResultsStart({ query, isPaged, source: 'web' }));
+    dispatch(creators.getResultsStart({ query, isPaged }));
 
     let queryParams = {
       query,
@@ -37,7 +37,7 @@ export const getWebResults = (query, filter, isPaged = false) => {
       };
     }
 
-    const searchUrl = `/search/web?${qs.stringify(queryParams)}`;
+    const searchUrl = `/search?${qs.stringify(queryParams)}`;
 
     axios
       .get(searchUrl)

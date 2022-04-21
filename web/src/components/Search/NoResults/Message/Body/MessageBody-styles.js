@@ -1,5 +1,5 @@
 // Utils
-import { makeStyles } from "../../../../utils";
+import { makeStyles } from '../../../../../utils';
 
 export const stylesCreator = (theme) => ({
   Default: {

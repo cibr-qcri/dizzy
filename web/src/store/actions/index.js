@@ -28,7 +28,7 @@ export {
   resetFilter,
   setFilter as setSearchFilter,
 } from './search/creators';
-export { getWebResults } from './search/thunks';
+export { getResults } from './search/thunks';
 
 // Stats
 export { getStats } from './stats/thunks';

@@ -1,5 +1,5 @@
 // Utils
-import { makeStyles } from "../../../../utils";
+import { makeStyles } from '../../../../../utils';
 
 export const stylesCreator = (theme) => ({
   Default: {
@@ -8,9 +8,9 @@ export const stylesCreator = (theme) => ({
     },
     typography: {
       maxWidth: 248,
-      whiteSpace: "nowrap",
-      overflow: "hidden",
-      textOverflow: "ellipsis",
+      whiteSpace: 'nowrap',
+      overflow: 'hidden',
+      textOverflow: 'ellipsis',
     },
   },
 });

@@ -5,12 +5,12 @@ import React from 'react';
 import { List, ListItem } from '@material-ui/core';
 
 // Componets
-import WebResult from '../Result';
+import Result from './Result';
 
 // Styles
-import { useStyles } from './WebResults-styles';
+import { useStyles } from './SearchResults-styles';
 
-export const WebResults = (props) => {
+export const SearchResults = (props) => {
   // Variables
   const classes = useStyles();
 
@@ -21,7 +21,7 @@ export const WebResults = (props) => {
         {props.items.map((result) => {
           return (
             <ListItem key={result.id}>
-              <WebResult
+              <Result
                 id={result.id}
                 url={result.url}
                 title={result.title}
@@ -39,4 +39,4 @@ export const WebResults = (props) => {
   return final;
 };
 
-export default WebResults;
+export default SearchResults;

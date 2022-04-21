@@ -1,12 +1,11 @@
 // Utils
-import { makeStyles } from "../../../../utils";
+import { makeStyles } from '../../../../utils';
 
 export const stylesCreator = (theme) => ({
   Default: {
     root: {
-      width: "100%",
+      width: '100%',
     },
-    list: {},
   },
 });
 
