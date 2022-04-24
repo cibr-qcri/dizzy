@@ -3,7 +3,11 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 // Material
-import { Home as MainIcon, Input as LoginIcon } from '@material-ui/icons';
+import {
+  Home as MainIcon,
+  Input as LoginIcon,
+  LibraryBooks as TermsIcon,
+} from '@material-ui/icons';
 import { List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
 
 // Styles
@@ -50,6 +54,18 @@ const MenuGeneral = (props) => {
             <MainIcon />
           </ListItemIcon>
           <ListItemText primary="Main" />
+        </ListItem>
+        <ListItem
+          button
+          component={NavLink}
+          to="/terms"
+          rel="noopener"
+          onClick={onClose}
+        >
+          <ListItemIcon>
+            <TermsIcon />
+          </ListItemIcon>
+          <ListItemText primary="Terms" />
         </ListItem>
         {loginItem}
       </List>
