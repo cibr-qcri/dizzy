@@ -30,7 +30,7 @@ const MenuOutreach = (props) => {
   const dispatch = useDispatch();
   const { onClose, isAuth } = props;
   const twitterLink = 'https://twitter.com/QatarComputing';
-  const contactLink = 'mailto:yboshmaf@hbku.edu.qa?subject=Hello!';
+  const contactLink = 'mailto:contact@mail.cibr.qcri.org?subject=Hello!';
 
   // Handlers
   const feedbackHandler = () => {

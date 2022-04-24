@@ -11,6 +11,8 @@ export const stylesCreator = (theme) => ({
       alignItems: 'center',
       justifyContent: 'center',
       minHeight: theme.spacing(7),
+      marginTop: theme.spacing(1),
+      marginBottom: theme.spacing(1),
     },
     toolbar: {
       position: 'absolute',
