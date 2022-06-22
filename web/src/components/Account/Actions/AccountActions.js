@@ -29,14 +29,14 @@ const AccountActions = (props) => {
   const signOutHandler = (event) => {
     event.preventDefault();
     dispatch(deleteToken());
-    history.push('/main');
+    history.push('/');
   };
 
   const confirmDeleteAccountHandler = (event) => {
     event.preventDefault();
     dispatch(hidePromptDialog());
     dispatch(deleteAccount());
-    history.push('/main');
+    history.push('/');
   };
 
   const deleteAccountHandler = (event) => {

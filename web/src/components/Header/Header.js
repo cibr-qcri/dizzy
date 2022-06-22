@@ -23,7 +23,7 @@ const Header = () => {
   const [open, setOpen] = useState(false);
   const location = useLocation();
   const isAuth = useSelector((state) => state.auth.data.token !== null);
-  const showLogo = location.pathname !== '/main';
+  const showLogo = location.pathname !== '/';
 
   // Handlers
   const toggleMenuHandler = () => {

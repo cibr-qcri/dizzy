@@ -46,7 +46,7 @@ const MenuGeneral = (props) => {
         <ListItem
           button
           component={NavLink}
-          to="/main"
+          to="/"
           rel="noopener"
           onClick={onClose}
         >

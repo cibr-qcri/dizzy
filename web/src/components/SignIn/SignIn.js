@@ -58,7 +58,7 @@ export const SignIn = () => {
     if (redirectTo) {
       view = <Redirect to={redirectTo} />;
     } else {
-      view = <Redirect to="/main" />;
+      view = <Redirect to="/" />;
     }
   }
 

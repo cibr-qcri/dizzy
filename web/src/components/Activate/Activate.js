@@ -29,7 +29,7 @@ export const Activate = () => {
   }
 
   if (error) {
-    view = <Redirect to="/main" />;
+    view = <Redirect to="/" />;
   }
 
   return view;

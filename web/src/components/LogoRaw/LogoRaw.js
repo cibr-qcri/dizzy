@@ -20,7 +20,7 @@ const LogoRaw = (props) => {
   // JSX
   const view = (
     <div className={classes.root}>
-      <Link className={classes.link} component={NavLink} to="/main">
+      <Link className={classes.link} component={NavLink} to="/">
         <img src={logo} alt="Dizzy" height={height} />
       </Link>
     </div>
