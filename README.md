@@ -2,6 +2,8 @@
 
 Dizzy: A search engine for the visible Dark Web.
 
+[![Build Status](https://jenkins.cibr.qcri.org/job/dizzy-build/badge/icon)](https://jenkins.cibr.qcri.org/job/dizzy-build/)
+
 ## Starting
 
 ```zsh
