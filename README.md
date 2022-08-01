@@ -13,7 +13,7 @@ AMPLITUDE_DEV_API_KEY="REPLACE" docker-compose -f docker-compose.dev.yml up --bu
 # In production
 # Clone the repo in /usr/local directory if not found
 cd /usr/local/dizzy && git pull
-SMTP_PASSWORD="REPLACE" AMPLITUDE_PROD_API_KEY="REPLACE" docker-compose -f docker-compose.prod.yml up --build --detach
+SMTP_PASSWORD="REPLACE" AMPLITUDE_PROD_API_KEY="REPLACE" JWT_SECRET="REPLACE" docker-compose -f docker-compose.prod.yml up --build --detach
 ```
 
 ## Stopping
